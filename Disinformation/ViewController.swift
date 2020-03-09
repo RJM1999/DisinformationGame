@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    //Comment to make sure git is working.
+    //Comment to make sure git is working and a slight change to this comment.
 
 }
 
