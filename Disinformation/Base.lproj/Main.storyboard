@@ -18,17 +18,26 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="jiB-bH-2IJ">
                                 <rect key="frame" x="182" y="360" width="50" height="176"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3r-J2-SQq">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3r-J2-SQq">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="46"/>
                                         <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="PlayButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bsv-dt-qZw"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7La-4n-gNL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7La-4n-gNL">
                                         <rect key="frame" x="0.0" y="81" width="50" height="30"/>
                                         <state key="normal" title="About"/>
+                                        <connections>
+                                            <action selector="AboutButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fnS-F6-hYI"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-vW-Xf2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-vW-Xf2">
                                         <rect key="frame" x="0.0" y="146" width="50" height="30"/>
                                         <state key="normal" title="Credits"/>
+                                        <connections>
+                                            <action selector="CreditsButtonClick:" destination="BYZ-38-t0r" eventType="touchDragInside" id="QQU-3a-KHX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

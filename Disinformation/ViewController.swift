@@ -16,6 +16,22 @@ class ViewController: UIViewController {
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
-
+    
+    //START Home page buttons
+    @IBAction func PlayButtonClick(_ sender: UIButton)
+    {
+        print("Play button clicked.")
+    }
+    
+    @IBAction func AboutButtonClick(_ sender: UIButton)
+    {
+      print("About button clicked.")
+    }
+    
+    @IBAction func CreditsButtonClick(_ sender: UIButton)
+    {
+        print("Credits clicked")
+    }
+    //END Home page buttons
 }
 
