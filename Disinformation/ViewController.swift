@@ -25,13 +25,34 @@ class ViewController: UIViewController {
     
     @IBAction func AboutButtonClick(_ sender: UIButton)
     {
-      //Button already wired up using ctrl + click
-      print("About button clicked.")
+        //string for the message box contents
+        let message = "Disinformation is all about modern day political campaigns and what tactics they employ to persuede the public. You are able to choose which side you play for and an AI controls the other, its a countdown till polling day!"
+        
+        //string for title of pop up box
+        let title = "About Disinformation"
+        
+        //Make alert pop up and add button
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        //Show alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func CreditsButtonClick(_ sender: UIButton)
     {
-        print("Credits clicked")
+        //string for the message box contents
+        let message = "All relevant credits to go here"
+        
+        //string for title of pop up box
+        let title = "Credits"
+        
+        //Make alert pop up and add button
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        //Show alert
+        self.present(alert, animated: true, completion: nil)
     }
     //END Home page buttons
 }
