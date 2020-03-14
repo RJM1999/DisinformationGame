@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     
     @IBAction func AboutButtonClick(_ sender: UIButton)
     {
+      //Button already wired up using ctrl + click
       print("About button clicked.")
     }
     
