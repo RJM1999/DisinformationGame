@@ -23,6 +23,7 @@
                                         <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="PlayButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bsv-dt-qZw"/>
+                                            <segue destination="T1C-7N-XnO" kind="presentation" id="36u-BY-nCJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7La-4n-gNL">
@@ -119,6 +120,16 @@
                 <exit id="CCl-PQ-ztM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1187" y="-483"/>
+        </scene>
+        <!--Game-->
+        <scene sceneID="S78-s8-p05">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Game" id="T1C-7N-XnO" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="XLZ-Fl-rrt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWS-xc-CCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="36"/>
         </scene>
     </scenes>
 </document>

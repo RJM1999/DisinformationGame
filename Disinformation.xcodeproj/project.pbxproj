@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D41724D241D66B9005380F2 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D41724C241D66B9005380F2 /* Game.storyboard */; };
 		6D4A3D092416CD6500A1FF54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A3D082416CD6500A1FF54 /* AppDelegate.swift */; };
 		6D4A3D0B2416CD6500A1FF54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A3D0A2416CD6500A1FF54 /* SceneDelegate.swift */; };
 		6D4A3D0D2416CD6500A1FF54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A3D0C2416CD6500A1FF54 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D41724C241D66B9005380F2 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		6D4A3D052416CD6500A1FF54 /* Disinformation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disinformation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D4A3D082416CD6500A1FF54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D4A3D0A2416CD6500A1FF54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				6D4A3D082416CD6500A1FF54 /* AppDelegate.swift */,
 				6D4A3D0A2416CD6500A1FF54 /* SceneDelegate.swift */,
 				6D4A3D0C2416CD6500A1FF54 /* ViewController.swift */,
+				6D41724C241D66B9005380F2 /* Game.storyboard */,
 				6D4A3D0E2416CD6500A1FF54 /* Main.storyboard */,
 				6D4A3D112416CD6600A1FF54 /* Assets.xcassets */,
 				6D4A3D132416CD6600A1FF54 /* LaunchScreen.storyboard */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D41724D241D66B9005380F2 /* Game.storyboard in Resources */,
 				6D4A3D152416CD6600A1FF54 /* LaunchScreen.storyboard in Resources */,
 				6D4A3D122416CD6600A1FF54 /* Assets.xcassets in Resources */,
 				6D4A3D102416CD6500A1FF54 /* Main.storyboard in Resources */,
