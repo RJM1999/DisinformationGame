@@ -23,7 +23,6 @@
                                         <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="PlayButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bsv-dt-qZw"/>
-                                            <segue destination="T1C-7N-XnO" kind="presentation" id="36u-BY-nCJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7La-4n-gNL">
@@ -69,67 +68,13 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="65X-uG-AqO">
+        <!--GameViewController-->
+        <scene sceneID="tbi-Ew-AKE">
             <objects>
-                <viewController id="LjO-AG-6rk" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZBz-fB-GBA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="clip" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aA-1t-ltP">
-                                <rect key="frame" x="20" y="231" width="363" height="145"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="145" id="bHt-2C-Sb0"/>
-                                </constraints>
-                                <string key="text">Disinformation is all about modern day political campaigns and what tactics they employ to persuede the public. You are able to choose which side you play for and an AI controls the other, its a countdown till polling day!</string>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOR-jF-fbb">
-                                <rect key="frame" x="20" y="190" width="70.5" height="32.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHl-D2-DbV">
-                                <rect key="frame" x="24" y="374" width="40" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="aboutBackButtonClicked:" destination="CCl-PQ-ztM" eventType="touchUpInside" id="KdM-ri-CYc"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Ppv-X8-dFc" firstAttribute="trailing" secondItem="4aA-1t-ltP" secondAttribute="trailing" constant="31" id="1Fl-A5-748"/>
-                            <constraint firstItem="Ppv-X8-dFc" firstAttribute="bottom" secondItem="4aA-1t-ltP" secondAttribute="bottom" constant="486" id="OKH-LJ-DSZ"/>
-                            <constraint firstItem="4aA-1t-ltP" firstAttribute="leading" secondItem="vOR-jF-fbb" secondAttribute="leading" id="Zbn-2E-AIM"/>
-                            <constraint firstItem="Ppv-X8-dFc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vOR-jF-fbb" secondAttribute="trailing" symbolic="YES" id="cV7-Nf-Q9K"/>
-                            <constraint firstItem="4aA-1t-ltP" firstAttribute="top" secondItem="vOR-jF-fbb" secondAttribute="bottom" constant="8.5" id="ips-pn-6JN"/>
-                            <constraint firstItem="4aA-1t-ltP" firstAttribute="leading" secondItem="ZBz-fB-GBA" secondAttribute="leadingMargin" id="sUe-ky-U0c"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ppv-X8-dFc"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="SMs-it-uQ6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Tz-hq-A0t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="CCl-PQ-ztM" userLabel="Exit" sceneMemberID="exit"/>
+                <viewControllerPlaceholder storyboardIdentifier="GameViewController" storyboardName="Game" referencedIdentifier="GameViewController" id="S1f-l5-WBU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g09-8a-wE2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="-483"/>
-        </scene>
-        <!--Game-->
-        <scene sceneID="S78-s8-p05">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Game" id="T1C-7N-XnO" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="XLZ-Fl-rrt"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FWS-xc-CCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="705" y="36"/>
+            <point key="canvasLocation" x="708" y="5"/>
         </scene>
     </scenes>
 </document>

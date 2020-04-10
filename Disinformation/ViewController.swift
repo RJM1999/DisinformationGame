@@ -21,6 +21,17 @@ class ViewController: UIViewController {
     @IBAction func PlayButtonClick(_ sender: UIButton)
     {
         print("Play button clicked.")
+        
+        //Create new game controller object and present new sb
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let gameStoryboard = mainStoryboard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else
+        {
+            print("Could not find game storyboard")
+            return
+        }
+        
+        present(gameStoryboard, animated: true, completion: nil)
     
     }
     

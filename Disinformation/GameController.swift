@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class GameController
 {
     var gameTimer = Timer()
     var monthCounter = 12
     var monthTime = 10
+    weak var delegate: ModeleDelgate?
     
     init()
     {
-        print("Init class...")
         startGameTimer()
     }
     
@@ -29,31 +30,55 @@ class GameController
     
     @objc func Tic()
     {
-        if monthTime > 0
+        if monthTime > 0 //Timer has not ran out
         {
-            monthTime -= 1
-            print("Tic Toc")
+            monthTime -= 1 //Take away one second
         }
         else
         {
-            gameTimer.invalidate()
-            print("End of timer")
+            gameTimer.invalidate() //Destroy
+            
+            monthTime = 10 //Reset seconds
+            
+            monthCounter -= 1 //Decrement month counter by one
+            
+            updateTimerOnScreen()//Update the timer
+            
+            self.startGameTimer() //Restart the game timer
         }
     }
     
-    func updateTimer()
+    func endGameTimer()
+    {
+        //Stop the timer from ticking
+        self.gameTimer.invalidate()
+    }
+    
+    func updateTimerOnScreen()
     {
         //Call view controller update
+        delegate?.recieveData(self.monthCounter)
+    }
+    
+    func endGame()
+    {
+        //Stop the game timer
+        self.endGameTimer()
     }
     
     func gameLoop()
     {
         while(monthCounter > 0) //While there is still time to play
         {
-            
+            updateTimerOnScreen()
         }
+        
+        //End game
+        self.endGame()
     }
- 
 }
  
-
+protocol ModeleDelgate: class
+{
+    func recieveData(_ data: Int)
+}
