@@ -13,7 +13,7 @@ class GameController
 {
     var gameTimer = Timer()
     var monthCounter = 12
-    var monthTime = 10
+    var monthTime = 3
     weak var delegate: ModeleDelgate?
     
     init()
@@ -23,9 +23,9 @@ class GameController
     
     func startGameTimer()
     {
-        self.gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
+        self.gameTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
         
-        print("The game timer has started!")
+        print("timer started")
     }
     
     @objc func Tic()
@@ -40,11 +40,18 @@ class GameController
             
             monthTime = 10 //Reset seconds
             
-            monthCounter -= 1 //Decrement month counter by one
-            
-            updateTimerOnScreen()//Update the timer
-            
-            self.startGameTimer() //Restart the game timer
+            if(monthCounter <= 0) //End of game
+            {
+                self.endGame()
+            }
+            else
+            {
+                monthCounter -= 1 //Decrement month counter by one
+                
+                updateTimerOnScreen()//Update the timer
+                
+                self.startGameTimer() //Restart the game timer
+            }
         }
     }
     
@@ -57,22 +64,24 @@ class GameController
     func updateTimerOnScreen()
     {
         //Call view controller update
-        delegate?.recieveData(self.monthCounter)
+        delegate?.updateMonth(self.monthCounter)
     }
     
     func endGame()
     {
         //Stop the game timer
         self.endGameTimer()
+        delegate?.showMessage("End of game", "The game has finished init")
+        print("End of game")
     }
     
     func gameLoop()
     {
         while(monthCounter > 0) //While there is still time to play
         {
-            updateTimerOnScreen()
         }
         
+        print("End the game loop")
         //End game
         self.endGame()
     }
@@ -80,5 +89,6 @@ class GameController
  
 protocol ModeleDelgate: class
 {
-    func recieveData(_ data: Int)
+    func updateMonth(_ data: Int)
+    func showMessage(_ title: String, _ message: String)
 }

@@ -19,7 +19,7 @@ class GameViewController: UIViewController
         //Start the game controller class
         gameControl.delegate = self
     }
-    
+        
     @objc func updateLblMonth(monthCounterInt: Int)
     {
         //Constant label layout
@@ -32,14 +32,29 @@ class GameViewController: UIViewController
         //Update the text of the label
         lblMonth.text = lblMonthMessage
     }
+    
+    func showMessageDismiss(title: String, message:String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        //Show alert
+        self.present(alert, animated: true, completion: nil)
+    }
 
     @IBOutlet weak var lblMonth: UILabel!
 }
 
 extension GameViewController: ModeleDelgate
 {
-    func recieveData(_ data: Int) {
+    func updateMonth(_ data: Int)
+    {
         updateLblMonth(monthCounterInt: data)
+    }
+    
+    func showMessage(_ title: String, _ message: String)
+    {
+        showMessageDismiss(title: title, message: message)
     }
 }
 
