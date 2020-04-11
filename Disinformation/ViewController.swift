@@ -21,16 +21,50 @@ class ViewController: UIViewController {
     @IBAction func PlayButtonClick(_ sender: UIButton)
     {
         print("Play button clicked.")
+        
+        //Create new game controller object and present new sb
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let gameStoryboard = mainStoryboard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else
+        {
+            print("Could not find game storyboard")
+            return
+        }
+        
+        present(gameStoryboard, animated: true, completion: nil)
+    
     }
     
     @IBAction func AboutButtonClick(_ sender: UIButton)
     {
-      print("About button clicked.")
+        //string for the message box contents
+        let message = "Disinformation is all about modern day political campaigns and what tactics they employ to persuede the public. You are able to choose which side you play for and an AI controls the other, its a countdown till polling day!"
+        
+        //string for title of pop up box
+        let title = "About Disinformation"
+        
+        //Make alert pop up and add button
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        //Show alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func CreditsButtonClick(_ sender: UIButton)
     {
-        print("Credits clicked")
+        //string for the message box contents
+        let message = "All relevant credits to go here"
+        
+        //string for title of pop up box
+        let title = "Credits"
+        
+        //Make alert pop up and add button
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        //Show alert
+        self.present(alert, animated: true, completion: nil)
     }
     //END Home page buttons
 }

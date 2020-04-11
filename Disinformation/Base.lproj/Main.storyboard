@@ -62,10 +62,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hGA-Ea-Wqi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
+        </scene>
+        <!--GameViewController-->
+        <scene sceneID="tbi-Ew-AKE">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GameViewController" storyboardName="Game" referencedIdentifier="GameViewController" id="S1f-l5-WBU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g09-8a-wE2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="5"/>
         </scene>
     </scenes>
 </document>
