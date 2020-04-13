@@ -11,15 +11,8 @@ import UIKit
 
 class AssetViewController: UIViewController
 {
-    weak var mainViewUpdater: updateGameMenuFromAsset?
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
     }
-}
-
-protocol updateGameMenuFromAsset: class
-{
-    func newAssetPurchases(newAsset: String)
 }
