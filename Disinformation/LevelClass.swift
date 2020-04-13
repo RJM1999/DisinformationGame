@@ -10,5 +10,19 @@ import Foundation
 
 class LevelClass
 {
+    var title: String
+    var desc: String
+    var timeAllowance: Int
+    var population: Int
+    var assetList: [Asset] = []
+    
+    init(title: String, desc: String, time: Int, population: Int, list: [Asset])
+    {
+        self.title = title
+        self.desc = desc
+        self.timeAllowance = time
+        self.population = population
+        self.assetList = list
+    }
     
 }

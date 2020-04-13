@@ -17,6 +17,9 @@ class Asset
     
     init(name: String, Desc: String, cost: Int, bonus: Int)
     {
-        
+        self.assetName = name
+        self.assetDesc = Desc
+        self.assetCost = cost
+        self.assetBonus = bonus
     }
 }
