@@ -41,12 +41,29 @@ class GameViewController: UIViewController
         //Show alert
         self.present(alert, animated: true, completion: nil)
     }
-
+    
+    @IBAction func assetMenuOpen(_ sender: Any)
+    {
+        let currentStoryboard = UIStoryboard(name: "Game", bundle: Bundle.main)
+        
+        guard let assetStoryboard = currentStoryboard.instantiateViewController(withIdentifier: "AssetViewController") as? AssetViewController else
+        {
+            print("Could not find game storyboard")
+            return
+        }
+                
+        present(assetStoryboard, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var lblMonth: UILabel!
 }
 
 extension GameViewController: ModeleDelgate
 {
+    func assetPurchased(_ newAsset: String) {
+        
+    }
+    
     func updateMonth(_ data: Int)
     {
         updateLblMonth(monthCounterInt: data)

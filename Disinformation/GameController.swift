@@ -91,4 +91,6 @@ protocol ModeleDelgate: class
 {
     func updateMonth(_ data: Int)
     func showMessage(_ title: String, _ message: String)
+    
+    func assetPurchased(_ newAsset: String)
 }
