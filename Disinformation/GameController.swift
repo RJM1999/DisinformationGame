@@ -30,7 +30,6 @@ class GameController
     {
         self.gameTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
         
-        print("timer started")
     }
     
     @objc func Tic()

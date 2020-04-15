@@ -16,5 +16,14 @@ class Player
     init()
     {
         self.balance = 10000
+        self.debitPlayerAmount(amount: 0)
+    }
+    
+    func debitPlayerAmount(amount: Int)
+    {
+        self.balance = self.balance - amount
+        
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("BalanceUpdate"), object: nil, userInfo: ["Value": self.balance])
     }
 }

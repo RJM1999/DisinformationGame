@@ -17,6 +17,7 @@ class GameViewController: UIViewController
 {
     //Game control class variable
     let gameControl = GameController()
+    let realPlayer = RealPlayer()
     
     override func viewDidLoad()
     {
@@ -28,7 +29,10 @@ class GameViewController: UIViewController
         
         //Observer for the asset bought
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(assetTest), name: Notification.Name("AssetTest"), object: nil)
+        nc.addObserver(self, selector: #selector(assetTest(notificationData:)), name: Notification.Name(rawValue: "AssetTest"), object: nil)
+        nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
+        
+        lblMoney.text = "Money: £" + String(realPlayer.balance)
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -55,6 +59,24 @@ class GameViewController: UIViewController
         lblMonth.text = lblMonthMessage
     }
     
+    @objc func updateLblMoney(notificationData: NSNotification)
+    {
+        //Constant label layout
+        var lblMoneyMessage = "Money: £"
+        
+        //Convert the int month to string so that it can go into the label
+        if let newBalanceInt = notificationData.userInfo?["Value"] as? Int
+        {
+            let moneyString = String(newBalanceInt)
+            
+            //Concat the strings together
+            lblMoneyMessage += moneyString
+            
+            //Update the text of the label
+            lblMoney.text = lblMoneyMessage
+        }
+    }
+    
     func showMessageDismiss(title: String, message:String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -64,9 +86,30 @@ class GameViewController: UIViewController
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func assetTest()
+    @objc func assetTest(notificationData: NSNotification)
     {
         print("Asset clicked")
+        
+        if let assetClicked = notificationData.userInfo?["Value"] as? Asset
+        {
+            print(assetClicked.assetName)
+            
+            var oldArray = gameControl.level.assetList
+            
+            //Find the asset in the array of assets
+            for (index, currentAsset) in oldArray.enumerated()
+            {
+                if(currentAsset.assetName == assetClicked.assetName)
+                {
+                    //Remove asset from the array
+                    gameControl.level.assetList.remove(at: index)
+                    print("Asset removed")
+                    
+                    //Debit amount from player
+                    self.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                }
+            }
+        }
     }
     
     @IBAction func assetMenuTapped(_ sender: Any)
@@ -74,6 +117,7 @@ class GameViewController: UIViewController
         self.performSegue(withIdentifier: "showAssetMenu", sender: self)
     }
     
+    @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
 }
 
@@ -137,16 +181,15 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("You tapped cell number \(indexPath.row).")
-    }
-    
-    @IBAction func assetTest(_ sender: Any)
-    {
-        let nc = NotificationCenter.default
-        nc.post(name: Notification.Name("AssetTest"), object: nil, userInfo: ["Value":"TestOfbtn"])
+        //Get number of row
+        let index = indexPath.row
         
+        //Disable the cell
+        
+        //Send notification
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("AssetTest"), object: nil, userInfo: ["Value": tableAssetData[index]])
     }
-    
-    
+        
 }
 
