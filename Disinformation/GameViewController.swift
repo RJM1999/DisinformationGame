@@ -144,12 +144,12 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //For the table view
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
 
         //Remove extra lines
         self.tableView.tableFooterView = UIView()
@@ -168,14 +168,17 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-
+        
         // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
+        let cell:AssetTableCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! AssetTableCell
 
         // set the text from the data model
-        cell.textLabel?.text = self.tableAssetData[indexPath.row].assetName
-
+        cell.assetName.text = tableAssetData[indexPath.row].assetName
+        cell.assetDesc.text = tableAssetData[indexPath.row].assetDesc
+        cell.assetCost.text = "Cost £" + String(tableAssetData[indexPath.row].assetCost)
+        
         return cell
+        
     }
 
     // method to run when table view cell is tapped
@@ -191,5 +194,13 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         nc.post(name: Notification.Name("AssetTest"), object: nil, userInfo: ["Value": tableAssetData[index]])
     }
         
+}
+
+class AssetTableCell: UITableViewCell
+{
+    @IBOutlet weak var assetName: UILabel!
+    @IBOutlet weak var assetDesc: UILabel!
+    @IBOutlet weak var assetCost: UILabel!
+    
 }
 
