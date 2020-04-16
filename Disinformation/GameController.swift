@@ -15,17 +15,21 @@ class GameController
     var monthCounter = 12
     var monthTime = 3
     weak var delegate: ModeleDelgate?
+    var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 10000)
     
     init()
     {
+        //Start the timer
         startGameTimer()
+        
+        //Get month allowance from the level class
+        monthCounter = level.timeAllowance
     }
     
     func startGameTimer()
     {
         self.gameTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
         
-        print("timer started")
     }
     
     @objc func Tic()
@@ -91,4 +95,5 @@ protocol ModeleDelgate: class
 {
     func updateMonth(_ data: Int)
     func showMessage(_ title: String, _ message: String)
+    
 }
