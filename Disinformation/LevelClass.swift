@@ -29,8 +29,8 @@ class LevelClass
     func makeAsset()
     {
         let twitBot = Asset(name:"Twitter Bots", Desc: "An army of twitter bots that do your bidding",cost: 100,bonus:  10)
-        let tvCamp = Asset(name:"TV Campaign", Desc: "Party political broadcasts",cost: 50,bonus:  10)
-        let flyers = Asset(name:"Flyer campaign", Desc: "Post flyers to voters",cost: 10,bonus:  10)
+        let tvCamp = Asset(name:"TV Campaign", Desc: "Party political broadcasts enough to make you change the channel",cost: 50,bonus:  10)
+        let flyers = Asset(name:"Flyer campaign", Desc: "Post flyers to voters, cheap but often thrown in the bin",cost: 10,bonus:  10)
         
         assetList.append(twitBot)
         assetList.append(tvCamp)

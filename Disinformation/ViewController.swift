@@ -10,9 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var aboutButton: UIButton!
+    @IBOutlet weak var creditButton: UIButton!
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        playButton.layer.cornerRadius = 4
+        aboutButton.layer.cornerRadius = 4
+        creditButton.layer.cornerRadius = 4
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
