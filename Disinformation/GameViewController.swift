@@ -6,9 +6,9 @@
 //  Copyright © 2020 Ross Maider. All rights reserved.
 //
 // Notes Code Reuse:
-// Passing data between view controller GameViewController Class:
+// Passing data between view controller GameViewController Class: 1
 // https://fluffy.es/3-ways-to-pass-data-between-view-controllers/#direct
-// Table Views AssetViewController class:
+// Table Views AssetViewController class: 2
 // https://stackoverflow.com/questions/33234180/uitableview-example-for-swift
 
 import UIKit
@@ -18,7 +18,7 @@ class GameViewController: UIViewController
     //Game control class variable
     let gameControl = GameController()
     let realPlayer = RealPlayer()
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -28,10 +28,12 @@ class GameViewController: UIViewController
         gameControl.delegate = self
         
         //Observer for the asset bought
+        //Start 1
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(assetTest(notificationData:)), name: Notification.Name(rawValue: "AssetTest"), object: nil)
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
         
+        //End 1
         lblMoney.text = "Money: £" + String(realPlayer.balance)
     }
     
@@ -139,6 +141,7 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //Empty array for the assets that the player can buy
     var tableAssetData = [Asset]()
 
+    //Start 2
     // cell reuse id (cells that scroll out of view can be reused)
     let cellReuseIdentifier = "cell"
     
@@ -176,6 +179,7 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.assetName.text = tableAssetData[indexPath.row].assetName
         cell.assetDesc.text = tableAssetData[indexPath.row].assetDesc
         cell.assetCost.text = "Cost £" + String(tableAssetData[indexPath.row].assetCost)
+        cell.assetImage.image = tableAssetData[indexPath.row].assetImage
         
         return cell
         
@@ -193,6 +197,8 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("AssetTest"), object: nil, userInfo: ["Value": tableAssetData[index]])
     }
+    
+    //End 2
         
 }
 
@@ -201,6 +207,7 @@ class AssetTableCell: UITableViewCell
     @IBOutlet weak var assetName: UILabel!
     @IBOutlet weak var assetDesc: UILabel!
     @IBOutlet weak var assetCost: UILabel!
+    @IBOutlet weak var assetImage: UIImageView!
     
 }
 
