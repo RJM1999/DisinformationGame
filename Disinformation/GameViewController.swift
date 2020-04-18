@@ -44,7 +44,7 @@ class GameViewController: UIViewController
         {
             //Declares new view controller and set the table data to the asset list
             let assetMenuVC = segue.destination as! AssetViewController
-            assetMenuVC.tableAssetData = self.gameControl.level.assetList
+            assetMenuVC.tableAssetData = self.realPlayer.availableAssets
         }
     }
         
@@ -96,7 +96,8 @@ class GameViewController: UIViewController
         {
             print(assetClicked.assetName)
             
-            var oldArray = gameControl.level.assetList
+            //Copy over array
+            let oldArray = self.realPlayer.availableAssets
             
             //Find the asset in the array of assets
             for (index, currentAsset) in oldArray.enumerated()
@@ -104,7 +105,7 @@ class GameViewController: UIViewController
                 if(currentAsset.assetName == assetClicked.assetName)
                 {
                     //Remove asset from the array
-                    gameControl.level.assetList.remove(at: index)
+                    self.realPlayer.availableAssets.remove(at: index)
                     print("Asset removed")
                     
                     //Debit amount from player

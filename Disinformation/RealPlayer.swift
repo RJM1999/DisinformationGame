@@ -10,5 +10,5 @@ import Foundation
 
 class RealPlayer: Player
 {
-
+    
 }
