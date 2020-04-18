@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Asset
 {
@@ -14,12 +15,14 @@ class Asset
     var assetDesc: String
     var assetCost: Int
     var assetBonus: Int
+    var assetImage: UIImage
     
-    init(name: String, Desc: String, cost: Int, bonus: Int)
+    init(name: String, Desc: String, cost: Int, bonus: Int, image: UIImage)
     {
         self.assetName = name
         self.assetDesc = Desc
         self.assetCost = cost
         self.assetBonus = bonus
+        self.assetImage = image
     }
 }

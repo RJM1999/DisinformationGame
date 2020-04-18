@@ -179,6 +179,7 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.assetName.text = tableAssetData[indexPath.row].assetName
         cell.assetDesc.text = tableAssetData[indexPath.row].assetDesc
         cell.assetCost.text = "Cost £" + String(tableAssetData[indexPath.row].assetCost)
+        cell.assetImage.image = tableAssetData[indexPath.row].assetImage
         
         return cell
         
@@ -206,6 +207,7 @@ class AssetTableCell: UITableViewCell
     @IBOutlet weak var assetName: UILabel!
     @IBOutlet weak var assetDesc: UILabel!
     @IBOutlet weak var assetCost: UILabel!
+    @IBOutlet weak var assetImage: UIImageView!
     
 }
 
