@@ -18,7 +18,7 @@ class GameViewController: UIViewController
     //Game control class variable
     let gameControl = GameController()
     let realPlayer = RealPlayer()
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()

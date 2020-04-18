@@ -18,9 +18,9 @@ class ViewController: UIViewController {
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        playButton.layer.cornerRadius = 4
-        aboutButton.layer.cornerRadius = 4
-        creditButton.layer.cornerRadius = 4
+        playButton.layer.cornerRadius = 6
+        aboutButton.layer.cornerRadius = 6
+        creditButton.layer.cornerRadius = 6
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
