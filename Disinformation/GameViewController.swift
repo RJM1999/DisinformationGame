@@ -17,7 +17,6 @@ class GameViewController: UIViewController
 {
     //Game control class variable
     let gameControl = GameController()
-    let realPlayer = RealPlayer()
 
     override func viewDidLoad()
     {
@@ -34,7 +33,8 @@ class GameViewController: UIViewController
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
         
         //End 1
-        lblMoney.text = "Money: £" + String(realPlayer.balance)
+        lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
+        
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -44,7 +44,7 @@ class GameViewController: UIViewController
         {
             //Declares new view controller and set the table data to the asset list
             let assetMenuVC = segue.destination as! AssetViewController
-            assetMenuVC.tableAssetData = self.realPlayer.availableAssets
+            assetMenuVC.tableAssetData = self.gameControl.realPlayer.availableAssets
         }
     }
         
@@ -59,6 +59,25 @@ class GameViewController: UIViewController
         
         //Update the text of the label
         lblMonth.text = lblMonthMessage
+    }
+    
+    func updateNews(newNewsItem: String)
+    {
+        //News prefix
+        let newsPrefix = "BREAKING: "
+        
+        //Get the current news item
+        if(lblNews.text == nil)
+        {
+            let updatedNews = newsPrefix + newNewsItem
+            lblNews.text = updatedNews
+        }
+        else
+        {
+            let updatedNews = newsPrefix + newNewsItem
+            lblNews.text = updatedNews
+        }
+        
     }
     
     @objc func updateLblMoney(notificationData: NSNotification)
@@ -97,7 +116,7 @@ class GameViewController: UIViewController
             print(assetClicked.assetName)
             
             //Copy over array
-            let oldArray = self.realPlayer.availableAssets
+            let oldArray = self.gameControl.realPlayer.availableAssets
             
             //Find the asset in the array of assets
             for (index, currentAsset) in oldArray.enumerated()
@@ -105,11 +124,14 @@ class GameViewController: UIViewController
                 if(currentAsset.assetName == assetClicked.assetName)
                 {
                     //Remove asset from the array
-                    self.realPlayer.availableAssets.remove(at: index)
+                    self.gameControl.realPlayer.availableAssets.remove(at: index)
                     print("Asset removed")
                     
                     //Debit amount from player
-                    self.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                    self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                    
+                    //Update the news bar
+                    self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
                 }
             }
         }
@@ -122,6 +144,7 @@ class GameViewController: UIViewController
     
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var lblNews: UILabel!
 }
 
 extension GameViewController: ModeleDelgate
