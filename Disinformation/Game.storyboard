@@ -56,14 +56,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kf9-BY-gwa">
+                                <rect key="frame" x="108" y="485" width="200" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="trackTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="DMz-3M-oYn"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IfK-i3-fGA"/>
                     <connections>
                         <outlet property="lblMoney" destination="N98-sy-Zai" id="icF-Xe-jr1"/>
                         <outlet property="lblMonth" destination="Agd-GK-9in" id="QQq-aH-X48"/>
                         <outlet property="lblNews" destination="VbF-2L-ejo" id="sPN-Eu-9HF"/>
+                        <outlet property="pvVote" destination="kf9-BY-gwa" id="uL6-Re-JWu"/>
                         <segue destination="pyH-bb-0Cv" kind="popoverPresentation" identifier="showAssetMenu" popoverAnchorView="lBW-Yq-EiK" id="xFi-wy-83u">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>

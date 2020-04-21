@@ -35,6 +35,10 @@ class GameViewController: UIViewController
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
         
+        //turn the progress view vertical
+        pvVote.transform = CGAffineTransform(rotationAngle: .pi / -2)
+        pvVote.transform = pvVote.transform.scaledBy(x: 1, y: 30)
+        
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -145,6 +149,7 @@ class GameViewController: UIViewController
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
+    @IBOutlet weak var pvVote: UIProgressView!
 }
 
 extension GameViewController: ModeleDelgate
@@ -184,6 +189,10 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Observer for end of game
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(returnToGame), name: Notification.Name(rawValue: "Return"), object: nil)
     }
     
     // number of rows in table view
@@ -223,6 +232,12 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //End 2
+    
+    @objc func returnToGame()
+    {
+        //Closes the popover so the game can end
+        self.dismiss(animated: true, completion: nil)
+    }
         
 }
 
