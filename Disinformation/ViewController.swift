@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var creditButton: UIButton!
+    @IBOutlet weak var lblTitle: UILabel!
     
     override func viewDidLoad()
     {
@@ -21,6 +22,18 @@ class ViewController: UIViewController {
         playButton.layer.cornerRadius = 6
         aboutButton.layer.cornerRadius = 6
         creditButton.layer.cornerRadius = 6
+        lblTitle.layer.cornerRadius = 6
+        
+        let background = UIImage(named: "Background")
+
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
