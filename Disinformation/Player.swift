@@ -12,11 +12,17 @@ class Player
 {
     var balance: Int
     var activeAssets: [Asset] = []
+    var availableAssets: [Asset] = []
     
     init()
     {
+        //Set the init balance
         self.balance = 10000
-        self.debitPlayerAmount(amount: 0)
+        
+        //Create a new level object to copy the available assets
+        let tempLevel = LevelClass(title: "Dummy Level", desc: "Dummy Level", time: 0, population: 0)
+        //Copy the asset array
+        self.availableAssets = tempLevel.assetList
     }
     
     func debitPlayerAmount(amount: Int)

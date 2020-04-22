@@ -17,7 +17,6 @@ class GameViewController: UIViewController
 {
     //Game control class variable
     let gameControl = GameController()
-    let realPlayer = RealPlayer()
 
     override func viewDidLoad()
     {
@@ -34,7 +33,12 @@ class GameViewController: UIViewController
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
         
         //End 1
-        lblMoney.text = "Money: £" + String(realPlayer.balance)
+        lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
+        
+        //turn the progress view vertical
+        pvVote.transform = CGAffineTransform(rotationAngle: .pi / -2)
+        pvVote.transform = pvVote.transform.scaledBy(x: 1, y: 30)
+        
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -44,7 +48,7 @@ class GameViewController: UIViewController
         {
             //Declares new view controller and set the table data to the asset list
             let assetMenuVC = segue.destination as! AssetViewController
-            assetMenuVC.tableAssetData = self.gameControl.level.assetList
+            assetMenuVC.tableAssetData = self.gameControl.realPlayer.availableAssets
         }
     }
         
@@ -59,6 +63,25 @@ class GameViewController: UIViewController
         
         //Update the text of the label
         lblMonth.text = lblMonthMessage
+    }
+    
+    func updateNews(newNewsItem: String)
+    {
+        //News prefix
+        let newsPrefix = "BREAKING: "
+        
+        //Get the current news item
+        if(lblNews.text == nil)
+        {
+            let updatedNews = newsPrefix + newNewsItem
+            lblNews.text = updatedNews
+        }
+        else
+        {
+            let updatedNews = newsPrefix + newNewsItem
+            lblNews.text = updatedNews
+        }
+        
     }
     
     @objc func updateLblMoney(notificationData: NSNotification)
@@ -96,7 +119,8 @@ class GameViewController: UIViewController
         {
             print(assetClicked.assetName)
             
-            var oldArray = gameControl.level.assetList
+            //Copy over array
+            let oldArray = self.gameControl.realPlayer.availableAssets
             
             //Find the asset in the array of assets
             for (index, currentAsset) in oldArray.enumerated()
@@ -104,11 +128,14 @@ class GameViewController: UIViewController
                 if(currentAsset.assetName == assetClicked.assetName)
                 {
                     //Remove asset from the array
-                    gameControl.level.assetList.remove(at: index)
+                    self.gameControl.realPlayer.availableAssets.remove(at: index)
                     print("Asset removed")
                     
                     //Debit amount from player
-                    self.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                    self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                    
+                    //Update the news bar
+                    self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
                 }
             }
         }
@@ -121,6 +148,8 @@ class GameViewController: UIViewController
     
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var lblNews: UILabel!
+    @IBOutlet weak var pvVote: UIProgressView!
 }
 
 extension GameViewController: ModeleDelgate
@@ -160,6 +189,10 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Observer for end of game
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(returnToGame), name: Notification.Name(rawValue: "Return"), object: nil)
     }
     
     // number of rows in table view
@@ -199,6 +232,12 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //End 2
+    
+    @objc func returnToGame()
+    {
+        //Closes the popover so the game can end
+        self.dismiss(animated: true, completion: nil)
+    }
         
 }
 

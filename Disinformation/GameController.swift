@@ -16,14 +16,19 @@ class GameController
     var monthTime = 3
     weak var delegate: ModeleDelgate?
     var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 10000)
+    var votePercentage: Int
+    var realPlayer = RealPlayer()
     
     init()
     {
-        //Start the timer
-        startGameTimer()
-        
         //Get month allowance from the level class
         monthCounter = level.timeAllowance
+        
+        //Set the starting vote
+        votePercentage = 50
+        
+        //Start the timer
+        startGameTimer()
     }
     
     func startGameTimer()
@@ -75,6 +80,8 @@ class GameController
     {
         //Stop the game timer
         self.endGameTimer()
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("Return"), object: nil, userInfo: nil)
         delegate?.showMessage("End of game", "The game has finished init")
         print("End of game")
     }
