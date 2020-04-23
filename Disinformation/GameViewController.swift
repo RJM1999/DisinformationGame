@@ -111,6 +111,13 @@ class GameViewController: UIViewController
         self.present(alert, animated: true, completion: nil)
     }
     
+    func updateProgressBar(newPercentage: Float)
+    {
+        //Update the progress bar with new percentage (0.6, 0.43 etc)
+        print(newPercentage)
+        pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
+    }
+    
     @objc func assetTest(notificationData: NSNotification)
     {
         print("Asset clicked")
@@ -136,6 +143,9 @@ class GameViewController: UIViewController
                     
                     //Update the news bar
                     self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
+                    
+                    //Update the vote bar
+                    self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
                 }
             }
         }
@@ -162,6 +172,11 @@ extension GameViewController: ModeleDelgate
     func showMessage(_ title: String, _ message: String)
     {
         showMessageDismiss(title: title, message: message)
+    }
+    
+    func updateProgressBar(_ newPercentage: Float)
+    {
+        updateProgressBar(newPercentage: newPercentage)
     }
 }
 

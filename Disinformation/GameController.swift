@@ -15,17 +15,14 @@ class GameController
     var monthCounter = 12
     var monthTime = 3
     weak var delegate: ModeleDelgate?
-    var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 10000)
-    var votePercentage: Int
+    var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 55)
     var realPlayer = RealPlayer()
+    var aiPlayer = AIPlayer()
     
     init()
     {
         //Get month allowance from the level class
         monthCounter = level.timeAllowance
-        
-        //Set the starting vote
-        votePercentage = 50
         
         //Start the timer
         startGameTimer()
@@ -86,15 +83,24 @@ class GameController
         print("End of game")
     }
     
-    func gameLoop()
+    func calculateVoteChange(isAI: Bool, assetBought: Asset)
     {
-        while(monthCounter > 0) //While there is still time to play
+        //If the player bought the asset
+        if(isAI == false)
         {
+            var newPercentage:Float = (Float(assetBought.assetBonus * self.level.population))
+            newPercentage = newPercentage / 10000
+            updateProgressBar(newPercentage: Float(newPercentage))
         }
-        
-        print("End the game loop")
-        //End game
-        self.endGame()
+        else //AI Purchase
+        {
+            
+        }
+    }
+    
+    func updateProgressBar(newPercentage: Float)
+    {
+        delegate?.updateProgressBar(newPercentage)
     }
 }
  
@@ -102,5 +108,5 @@ protocol ModeleDelgate: class
 {
     func updateMonth(_ data: Int)
     func showMessage(_ title: String, _ message: String)
-    
+    func updateProgressBar(_ newPercentage: Float)
 }
