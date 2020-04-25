@@ -160,6 +160,11 @@ class GameViewController: UIViewController
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
     @IBOutlet weak var pvVote: UIProgressView!
+    
+    @IBAction func btnMainMenu(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "showMenu", sender: self)
+    }
 }
 
 extension GameViewController: ModeleDelgate
@@ -263,5 +268,27 @@ class AssetTableCell: UITableViewCell
     @IBOutlet weak var assetCost: UILabel!
     @IBOutlet weak var assetImage: UIImageView!
     
+}
+
+class menuViewControlller: UIViewController
+{
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        btnResume.layer.cornerRadius = 6
+        btnExit.layer.cornerRadius = 6
+    }
+    
+    @IBOutlet weak var btnResume: UIButton!
+    @IBOutlet weak var btnExit: UIButton!
+    
+    @IBAction func returnToGame(_ sender: Any)
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func showMainMenu(_ sender: Any)
+    {
+        //TODO
+    }
 }
 

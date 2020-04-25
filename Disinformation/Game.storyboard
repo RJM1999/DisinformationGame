@@ -67,9 +67,17 @@
                                 <color key="progressTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pys-yb-iIe">
+                                <rect key="frame" x="10" y="822" width="39" height="30"/>
+                                <state key="normal" title="Menu"/>
+                                <connections>
+                                    <action selector="btnMainMenu:" destination="fy1-zz-a8m" eventType="touchUpInside" id="gPH-PZ-YPY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="DMz-3M-oYn" firstAttribute="bottom" secondItem="Pys-yb-iIe" secondAttribute="bottom" constant="10" id="0Kb-wi-SiF"/>
                             <constraint firstItem="N98-sy-Zai" firstAttribute="top" secondItem="DMz-3M-oYn" secondAttribute="top" constant="10" id="7M5-sK-Rdq"/>
                             <constraint firstItem="VbF-2L-ejo" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="35" id="BJG-zn-yZX"/>
                             <constraint firstItem="Agd-GK-9in" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="10" id="Ifj-aL-X0R"/>
@@ -80,6 +88,7 @@
                             <constraint firstAttribute="trailing" secondItem="8TM-Is-mjL" secondAttribute="trailing" constant="10" id="Xfa-5a-sJq"/>
                             <constraint firstItem="VbF-2L-ejo" firstAttribute="top" secondItem="cNo-WU-JIR" secondAttribute="bottom" constant="22" id="YIP-C3-K4D"/>
                             <constraint firstItem="YNZ-S8-MOZ" firstAttribute="leading" secondItem="lBW-Yq-EiK" secondAttribute="leadingMargin" constant="-55" id="YVP-4C-jIS"/>
+                            <constraint firstItem="Pys-yb-iIe" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="10" id="meG-th-Kkb"/>
                             <constraint firstItem="Agd-GK-9in" firstAttribute="top" secondItem="DMz-3M-oYn" secondAttribute="top" constant="10" id="npy-GH-rjE"/>
                             <constraint firstItem="kf9-BY-gwa" firstAttribute="leading" secondItem="lBW-Yq-EiK" secondAttribute="leadingMargin" constant="88" id="nqK-fV-u9K"/>
                             <constraint firstItem="cNo-WU-JIR" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="110" id="oFS-gB-pmj"/>
@@ -99,11 +108,68 @@
                         <segue destination="pyH-bb-0Cv" kind="popoverPresentation" identifier="showAssetMenu" popoverAnchorView="lBW-Yq-EiK" id="xFi-wy-83u">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="mao-ht-b24" kind="popoverPresentation" identifier="showMenu" popoverAnchorView="lBW-Yq-EiK" id="Q58-kG-p8V">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJ8-ZC-7PX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-94.20289855072464" y="-80.357142857142847"/>
+        </scene>
+        <!--Menu View Controlller-->
+        <scene sceneID="5ah-uw-RSF">
+            <objects>
+                <viewController id="mao-ht-b24" customClass="menuViewControlller" customModule="Disinformation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l3E-gz-l9w">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="Npj-AG-yK5">
+                                <rect key="frame" x="170.5" y="100" width="75" height="33.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-IX-8iR">
+                                <rect key="frame" x="142" y="177" width="130" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Resume">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToGame:" destination="mao-ht-b24" eventType="touchUpInside" id="fbV-Jb-FQs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thb-Qp-IkR">
+                                <rect key="frame" x="137" y="277" width="140" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Exit to Main Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showMainMenu:" destination="mao-ht-b24" eventType="touchUpInside" id="7tP-VP-ek6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Npj-AG-yK5" firstAttribute="top" secondItem="Fhv-0L-Hjw" secondAttribute="top" constant="100" id="35W-mu-ZTq"/>
+                            <constraint firstItem="Npj-AG-yK5" firstAttribute="leading" secondItem="Fhv-0L-Hjw" secondAttribute="leading" constant="170.5" id="hgH-ei-RHf"/>
+                            <constraint firstItem="Npj-AG-yK5" firstAttribute="centerX" secondItem="l3E-gz-l9w" secondAttribute="centerX" constant="1" id="lJ0-K5-Zg2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fhv-0L-Hjw"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnExit" destination="Thb-Qp-IkR" id="WhC-Q9-lkB"/>
+                        <outlet property="btnResume" destination="x7B-IX-8iR" id="u3V-bM-XTg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yeO-C5-USY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847.82608695652175" y="329.46428571428572"/>
         </scene>
         <!--Asset View Controller-->
         <scene sceneID="MDO-Bm-ZZv">
