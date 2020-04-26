@@ -164,6 +164,10 @@ class GameViewController: UIViewController
     @IBAction func btnMainMenu(_ sender: Any)
     {
         self.performSegue(withIdentifier: "showMenu", sender: self)
+        
+        //For stopping the timer
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
     }
 }
 
@@ -285,6 +289,10 @@ class menuViewControlller: UIViewController
     @IBAction func returnToGame(_ sender: Any)
     {
         self.dismiss(animated: true, completion: nil)
+        
+        //Restarting the timer
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
     }
     @IBAction func showMainMenu(_ sender: Any)
     {

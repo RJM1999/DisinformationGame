@@ -12,6 +12,7 @@ import UIKit
 class GameController
 {
     var gameTimer = Timer()
+    var isPaused = false
     var monthCounter = 12
     var monthTime = 3
     weak var delegate: ModeleDelgate?
@@ -26,6 +27,11 @@ class GameController
         
         //Start the timer
         startGameTimer()
+        
+        //Observers for starting the timers
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(pauseTimer), name: Notification.Name(rawValue: "PauseTimer"), object: nil)
+        nc.addObserver(self, selector: #selector(restartTimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
     }
     
     func startGameTimer()
@@ -36,29 +42,47 @@ class GameController
     
     @objc func Tic()
     {
-        if monthTime > 0 //Timer has not ran out
+        if(self.isPaused == false) //Game is not paused
         {
-            monthTime -= 1 //Take away one second
-        }
-        else
-        {
-            gameTimer.invalidate() //Destroy
-            
-            monthTime = 10 //Reset seconds
-            
-            if(monthCounter <= 0) //End of game
+            if monthTime > 0 //Timer has not ran out
             {
-                self.endGame()
+                monthTime -= 1 //Take away one second
             }
             else
             {
-                monthCounter -= 1 //Decrement month counter by one
+                gameTimer.invalidate() //Destroy
                 
-                updateTimerOnScreen()//Update the timer
+                monthTime = 10 //Reset seconds
                 
-                self.startGameTimer() //Restart the game timer
+                if(monthCounter <= 0) //End of game
+                {
+                    self.endGame()
+                }
+                else
+                {
+                    monthCounter -= 1 //Decrement month counter by one
+                    
+                    updateTimerOnScreen()//Update the timer
+                    
+                    self.startGameTimer() //Restart the game timer
+                }
             }
         }
+        else
+        {
+            //Do nothing as the game is paused
+            print("Timer paused")
+        }
+    }
+    
+    @objc func pauseTimer()
+    {
+        self.isPaused = true
+    }
+    
+    @objc func restartTimer()
+    {
+        self.isPaused = false
     }
     
     func endGameTimer()
