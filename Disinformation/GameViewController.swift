@@ -283,6 +283,12 @@ class menuViewControlller: UIViewController
         btnExit.layer.cornerRadius = 6
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+    }
+    
     @IBOutlet weak var btnResume: UIButton!
     @IBOutlet weak var btnExit: UIButton!
     
@@ -294,6 +300,7 @@ class menuViewControlller: UIViewController
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
     }
+    
     @IBAction func showMainMenu(_ sender: Any)
     {
         //TODO
