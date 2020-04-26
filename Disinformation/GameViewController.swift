@@ -300,3 +300,11 @@ class menuViewControlller: UIViewController
     }
 }
 
+class endGameViewController: UIViewController
+{
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+}
+

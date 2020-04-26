@@ -111,6 +111,7 @@
                         <segue destination="mao-ht-b24" kind="popoverPresentation" identifier="showMenu" popoverAnchorView="lBW-Yq-EiK" id="Q58-kG-p8V">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="c5G-yt-hge" kind="showDetail" identifier="endGameResult" id="WQr-X6-7ra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJ8-ZC-7PX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -298,6 +299,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWX-qJ-75t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850.39999999999998" y="-325.86206896551727"/>
+        </scene>
+        <!--End Game View Controller-->
+        <scene sceneID="LY9-XO-Ij7">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="c5G-yt-hge" customClass="endGameViewController" customModule="Disinformation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yhf-rd-5gS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gVM-W7-kWa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x6q-hr-fiq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-94" y="828"/>
         </scene>
     </scenes>
     <resources>
