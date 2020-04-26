@@ -15,19 +15,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Months Remaining: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agd-GK-9in">
-                                <rect key="frame" x="10" y="54" width="178" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Months Remaining: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agd-GK-9in">
+                                <rect key="frame" x="10" y="54" width="200" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="BnG-wx-jE2"/>
-                                    <constraint firstAttribute="width" constant="178" id="Q2L-4l-utv"/>
+                                    <constraint firstAttribute="width" constant="200" id="LrP-Fb-TRO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money: £" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N98-sy-Zai">
-                                <rect key="frame" x="242.5" y="54" width="71.5" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money: £" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N98-sy-Zai">
+                                <rect key="frame" x="220" y="54" width="184" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <accessibility key="accessibilityConfiguration" identifier="lblMoney"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,6 +85,7 @@
                             <constraint firstItem="cNo-WU-JIR" firstAttribute="top" secondItem="Agd-GK-9in" secondAttribute="bottom" constant="58" id="JC7-Zl-8eh"/>
                             <constraint firstItem="YNZ-S8-MOZ" firstAttribute="centerX" secondItem="lBW-Yq-EiK" secondAttribute="centerX" id="NmL-pk-d7N"/>
                             <constraint firstItem="DMz-3M-oYn" firstAttribute="bottom" secondItem="8TM-Is-mjL" secondAttribute="bottom" constant="10" id="O3T-ua-WeN"/>
+                            <constraint firstItem="DMz-3M-oYn" firstAttribute="trailing" secondItem="N98-sy-Zai" secondAttribute="trailing" constant="10" id="UV4-Tw-gax"/>
                             <constraint firstItem="YNZ-S8-MOZ" firstAttribute="top" secondItem="Agd-GK-9in" secondAttribute="bottom" constant="41" id="VgS-sO-UGC"/>
                             <constraint firstAttribute="trailing" secondItem="8TM-Is-mjL" secondAttribute="trailing" constant="10" id="Xfa-5a-sJq"/>
                             <constraint firstItem="VbF-2L-ejo" firstAttribute="top" secondItem="cNo-WU-JIR" secondAttribute="bottom" constant="22" id="YIP-C3-K4D"/>
@@ -95,7 +96,7 @@
                             <constraint firstItem="cNo-WU-JIR" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="110" id="oFS-gB-pmj"/>
                             <constraint firstItem="DMz-3M-oYn" firstAttribute="trailing" secondItem="VbF-2L-ejo" secondAttribute="trailing" constant="43" id="pYi-QD-wma"/>
                             <constraint firstItem="Agd-GK-9in" firstAttribute="height" secondItem="N98-sy-Zai" secondAttribute="height" id="qDR-cG-7Vi"/>
-                            <constraint firstItem="N98-sy-Zai" firstAttribute="leading" secondItem="Agd-GK-9in" secondAttribute="trailing" constant="54.666666666666629" id="snd-Mg-Kp8"/>
+                            <constraint firstItem="N98-sy-Zai" firstAttribute="leading" secondItem="Agd-GK-9in" secondAttribute="trailing" constant="10" id="snd-Mg-Kp8"/>
                             <constraint firstItem="DMz-3M-oYn" firstAttribute="bottom" secondItem="kf9-BY-gwa" secondAttribute="bottom" constant="374" id="uVN-sl-dz7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kf9-BY-gwa" secondAttribute="trailing" constant="86" id="vgW-aO-UiU"/>
                         </constraints>
@@ -125,17 +126,17 @@
             <objects>
                 <viewController id="mao-ht-b24" customClass="menuViewControlller" customModule="Disinformation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l3E-gz-l9w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="Npj-AG-yK5">
-                                <rect key="frame" x="170.5" y="100" width="73.5" height="33.5"/>
+                                <rect key="frame" x="150.5" y="100" width="74" height="33.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-IX-8iR">
-                                <rect key="frame" x="142" y="183.5" width="130" height="50"/>
+                                <rect key="frame" x="122.5" y="183.5" width="130" height="50"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="T0J-UM-r4h"/>
@@ -149,7 +150,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thb-Qp-IkR">
-                                <rect key="frame" x="142" y="273.5" width="130" height="50"/>
+                                <rect key="frame" x="122.5" y="273.5" width="130" height="50"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Exit to Main Menu">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
