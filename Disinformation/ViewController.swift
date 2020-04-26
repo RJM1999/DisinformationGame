@@ -75,10 +75,10 @@ class ViewController: UIViewController {
     @IBAction func CreditsButtonClick(_ sender: UIButton)
     {
         //string for the message box contents
-        let message = "All relevant credits to go here"
+        let message = "Your objective is to convince more than 50% of the public to vote for your side of the campaign. To achieve this goal you can buy campaign assets by using the asset menu. You are against the clock!"
         
         //string for title of pop up box
-        let title = "Credits"
+        let title = "How To Play"
         
         //Make alert pop up and add button
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
