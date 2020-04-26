@@ -34,10 +34,17 @@ class GameViewController: UIViewController
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
+        lblMonth.text = "Months Remaining: " + String(gameControl.level.timeAllowance)
         
         //turn the progress view vertical
         pvVote.transform = CGAffineTransform(rotationAngle: .pi / -2)
         pvVote.transform = pvVote.transform.scaledBy(x: 1, y: 30)
+        
+        //Round the corners
+        lblMoney.layer.masksToBounds = true
+        lblMonth.layer.masksToBounds = true
+        lblMoney.layer.cornerRadius = 6
+        lblMonth.layer.cornerRadius = 6
         
     }
     
