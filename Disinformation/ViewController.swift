@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -14,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var creditButton: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
+    
+    var audioPlayer:AVAudioPlayer?
     
     override func viewDidLoad()
     {
@@ -25,6 +28,9 @@ class ViewController: UIViewController {
         lblTitle.layer.cornerRadius = 6
         
         let background = UIImage(named: "Background")
+        
+        //Play theme music
+        self.playThemeMusic()
 
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -37,6 +43,24 @@ class ViewController: UIViewController {
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
+    
+    func playThemeMusic()
+    {
+        let file = Bundle.main.path(forResource: "MainMenuTheme", ofType: "m4a")!
+        let musicFile = URL(fileURLWithPath: file)
+        
+        do
+        {
+            //Play music forever
+            audioPlayer = try AVAudioPlayer(contentsOf: musicFile)
+            audioPlayer?.numberOfLoops = -1
+            audioPlayer?.play()
+        }
+        catch
+        {
+            print("Could not play theme music")
+        }
+    }
     
     //START Home page buttons
     @IBAction func PlayButtonClick(_ sender: UIButton)

@@ -19,6 +19,8 @@
 		6D4A3D102416CD6500A1FF54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A3D0E2416CD6500A1FF54 /* Main.storyboard */; };
 		6D4A3D122416CD6600A1FF54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A3D112416CD6600A1FF54 /* Assets.xcassets */; };
 		6D4A3D152416CD6600A1FF54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D4A3D132416CD6600A1FF54 /* LaunchScreen.storyboard */; };
+		6DB0B0D4245970C300F63AAB /* MainMenuTheme.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6DB0B0D3245970C300F63AAB /* MainMenuTheme.m4a */; };
+		6DB0B0D62459776500F63AAB /* NewsThud.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6DB0B0D52459776500F63AAB /* NewsThud.m4a */; };
 		6DFB11CF243E24E500B0268C /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB11CE243E24E500B0268C /* GameController.swift */; };
 		6DFB11D1243E373600B0268C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB11D0243E373600B0268C /* GameViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		6D4A3D112416CD6600A1FF54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D4A3D142416CD6600A1FF54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D4A3D162416CD6600A1FF54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DB0B0D3245970C300F63AAB /* MainMenuTheme.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainMenuTheme.m4a; sourceTree = "<group>"; };
+		6DB0B0D52459776500F63AAB /* NewsThud.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewsThud.m4a; sourceTree = "<group>"; };
 		6DFB11CE243E24E500B0268C /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		6DFB11D0243E373600B0268C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				6D4A3D082416CD6500A1FF54 /* AppDelegate.swift */,
+				6DB0B0D22459709D00F63AAB /* Music */,
 				6D4A3D0A2416CD6500A1FF54 /* SceneDelegate.swift */,
 				6D4A3D0C2416CD6500A1FF54 /* ViewController.swift */,
 				6D41724C241D66B9005380F2 /* Game.storyboard */,
@@ -89,6 +94,15 @@
 				6D3663D12444A534007EB72E /* RealPlayer.swift */,
 			);
 			path = Disinformation;
+			sourceTree = "<group>";
+		};
+		6DB0B0D22459709D00F63AAB /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				6DB0B0D52459776500F63AAB /* NewsThud.m4a */,
+				6DB0B0D3245970C300F63AAB /* MainMenuTheme.m4a */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +164,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D41724D241D66B9005380F2 /* Game.storyboard in Resources */,
+				6DB0B0D4245970C300F63AAB /* MainMenuTheme.m4a in Resources */,
+				6DB0B0D62459776500F63AAB /* NewsThud.m4a in Resources */,
 				6D4A3D152416CD6600A1FF54 /* LaunchScreen.storyboard in Resources */,
 				6D4A3D122416CD6600A1FF54 /* Assets.xcassets in Resources */,
 				6D4A3D102416CD6500A1FF54 /* Main.storyboard in Resources */,
