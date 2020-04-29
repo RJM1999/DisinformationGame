@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to report..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-2L-ejo">
-                                <rect key="frame" x="35" y="195" width="336" height="21"/>
+                                <rect key="frame" x="35" y="195" width="359" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -95,7 +95,7 @@
                             <constraint firstItem="Agd-GK-9in" firstAttribute="top" secondItem="DMz-3M-oYn" secondAttribute="top" constant="10" id="npy-GH-rjE"/>
                             <constraint firstItem="kf9-BY-gwa" firstAttribute="leading" secondItem="lBW-Yq-EiK" secondAttribute="leadingMargin" constant="88" id="nqK-fV-u9K"/>
                             <constraint firstItem="cNo-WU-JIR" firstAttribute="leading" secondItem="DMz-3M-oYn" secondAttribute="leading" constant="110" id="oFS-gB-pmj"/>
-                            <constraint firstItem="DMz-3M-oYn" firstAttribute="trailing" secondItem="VbF-2L-ejo" secondAttribute="trailing" constant="43" id="pYi-QD-wma"/>
+                            <constraint firstItem="DMz-3M-oYn" firstAttribute="trailing" secondItem="VbF-2L-ejo" secondAttribute="trailing" constant="20" id="pYi-QD-wma"/>
                             <constraint firstItem="Agd-GK-9in" firstAttribute="height" secondItem="N98-sy-Zai" secondAttribute="height" id="qDR-cG-7Vi"/>
                             <constraint firstItem="N98-sy-Zai" firstAttribute="leading" secondItem="Agd-GK-9in" secondAttribute="trailing" constant="10" id="snd-Mg-Kp8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kf9-BY-gwa" secondAttribute="trailing" constant="86" id="vgW-aO-UiU"/>

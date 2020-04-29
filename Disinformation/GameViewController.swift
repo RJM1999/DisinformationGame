@@ -12,11 +12,13 @@
 // https://stackoverflow.com/questions/33234180/uitableview-example-for-swift
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController
 {
     //Game control class variable
     let gameControl = GameController()
+    var audioPlayer:AVAudioPlayer?
 
     override func viewDidLoad()
     {
@@ -89,6 +91,24 @@ class GameViewController: UIViewController
             lblNews.text = updatedNews
         }
         
+        self.playNewsThud()
+    }
+    
+    func playNewsThud()
+    {
+        let file = Bundle.main.path(forResource: "NewsThud", ofType: "m4a")!
+        let musicFile = URL(fileURLWithPath: file)
+        
+        do
+        {
+            //Play music
+            audioPlayer = try AVAudioPlayer(contentsOf: musicFile)
+            audioPlayer?.play()
+        }
+        catch
+        {
+            print("Could not play news thud")
+        }
     }
     
     @objc func updateLblMoney(notificationData: NSNotification)
