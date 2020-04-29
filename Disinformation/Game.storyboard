@@ -313,6 +313,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gVM-W7-kWa"/>
                     </view>
+                    <connections>
+                        <segue destination="B3S-tf-uEI" kind="presentation" modalPresentationStyle="fullScreen" id="mvj-5h-VjB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6q-hr-fiq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -323,4 +326,7 @@
         <image name="assetmenu" width="246" height="248"/>
         <image name="newsbanner" width="1318" height="328"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mvj-5h-VjB"/>
+    </inferredMetricsTieBreakers>
 </document>
