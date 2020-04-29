@@ -42,6 +42,12 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(imageView)
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        //Stop playing the music
+        self.stopThemeMusic()
+    }
+    
     //Comment to make sure git is working and a slight change to this comment :).
     
     func playThemeMusic()
@@ -60,6 +66,12 @@ class ViewController: UIViewController {
         {
             print("Could not play theme music")
         }
+    }
+    
+    func stopThemeMusic()
+    {
+        //StopPlaying the music
+        audioPlayer?.stop()
     }
     
     //START Home page buttons
