@@ -68,9 +68,13 @@
                                 <color key="progressTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pys-yb-iIe">
-                                <rect key="frame" x="10" y="822" width="39" height="30"/>
-                                <state key="normal" title="Menu"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pys-yb-iIe">
+                                <rect key="frame" x="10" y="775" width="93" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="S15-cd-8IU"/>
+                                    <constraint firstAttribute="height" constant="77" id="t8Y-Tm-dLT"/>
+                                </constraints>
+                                <state key="normal" title="Menu" image="Menu"/>
                                 <connections>
                                     <action selector="btnMainMenu:" destination="fy1-zz-a8m" eventType="touchUpInside" id="gPH-PZ-YPY"/>
                                 </connections>
@@ -366,6 +370,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Menu" width="521" height="526"/>
         <image name="assetmenu" width="246" height="248"/>
         <image name="newsbanner" width="1318" height="328"/>
     </resources>

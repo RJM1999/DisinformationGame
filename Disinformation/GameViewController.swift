@@ -49,6 +49,8 @@ class GameViewController: UIViewController
         lblMoney.layer.cornerRadius = 6
         lblMonth.layer.cornerRadius = 6
         
+        //Set the background
+        self.setBackground()
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -92,6 +94,21 @@ class GameViewController: UIViewController
         {
             return ""
         }
+    }
+    
+    func setBackground()
+    {
+        let background = UIImage(named: "gamebackground")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.2
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
         
     @objc func updateLblMonth(monthCounterInt: Int)
