@@ -392,7 +392,29 @@ class endGameViewController: UIViewController
     
     func processResults()
     {
-        
+        if(didPlayerWin.isEmpty)
+        {
+            print("There was a problem with displaying the results")
+        }
+        else //There is a result
+        {
+            if(didPlayerWin == "player") //Player won
+            {
+                lblResultsText.text = "Congratulations, you won the game! You managed to convince the general public to vote for you."
+            }
+            else if(didPlayerWin == "ai") //AI Won
+            {
+                lblResultsText.text = "Unfortunately, you lost the game. Your adversary managed to convince more of the public to vote for them"
+            }
+            else if(didPlayerWin == "draw") //Equal
+            {
+                lblResultsText.text = "It is too close to call this time! The electoral office has called for a recount of the votes!"
+            }
+            else
+            {
+                print("Error with the results")
+            }
+        }
     }
 }
 

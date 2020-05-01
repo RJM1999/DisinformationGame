@@ -119,7 +119,10 @@ class GameController
         }
         else //AI Purchase
         {
-            
+            var newPercentage:Float = (Float(assetBought.assetBonus * self.level.population))
+            newPercentage = newPercentage / 10000
+            newPercentage = newPercentage * -1
+            updateProgressBar(newPercentage: Float(newPercentage))
         }
     }
     
