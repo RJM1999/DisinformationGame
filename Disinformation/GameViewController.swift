@@ -33,6 +33,7 @@ class GameViewController: UIViewController
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(assetTest(notificationData:)), name: Notification.Name(rawValue: "AssetTest"), object: nil)
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
+        nc.addObserver(self, selector: #selector(endGame), name: Notification.Name(rawValue: "EndGame"), object: nil)
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
@@ -58,6 +59,38 @@ class GameViewController: UIViewController
             //Declares new view controller and set the table data to the asset list
             let assetMenuVC = segue.destination as! AssetViewController
             assetMenuVC.tableAssetData = self.gameControl.realPlayer.availableAssets
+        }
+        else if(segue.identifier == "endGameResult")
+        {
+            let endGameVC = segue.destination as! endGameViewController
+            endGameVC.didPlayerWin = calculateResults()
+        }
+        else
+        {
+            
+        }
+    }
+    
+    func calculateResults() -> String
+    {
+        //Get value from the vote bar
+        let votePercentage = pvVote.progress
+        
+        if(votePercentage > 0.5) //Player won
+        {
+            return "player"
+        }
+        else if(votePercentage == 0.5) //Draw
+        {
+            return "draw"
+        }
+        else if(votePercentage < 0.5) //Ai won
+        {
+            return "ai"
+        }
+        else //Just in case something went wrong
+        {
+            return ""
         }
     }
         
@@ -143,6 +176,11 @@ class GameViewController: UIViewController
         //Update the progress bar with new percentage (0.6, 0.43 etc)
         print(newPercentage)
         pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
+    }
+    
+    @objc func endGame()
+    {
+        self.performSegue(withIdentifier: "endGameResult", sender: self)        
     }
     
     @objc func assetTest(notificationData: NSNotification)
@@ -336,9 +374,25 @@ class menuViewControlller: UIViewController
 
 class endGameViewController: UIViewController
 {
+    var didPlayerWin: String = ""
+    
+    @IBOutlet weak var lblHeading: UILabel!
+    @IBOutlet weak var lblResultsText: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        processResults()
+    }
+    
+    @IBAction func returnToMainMenuBtn(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "endGameReturn", sender: self)
+    }
+    
+    func processResults()
+    {
+        
     }
 }
 
