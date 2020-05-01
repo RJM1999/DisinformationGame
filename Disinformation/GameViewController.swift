@@ -12,11 +12,13 @@
 // https://stackoverflow.com/questions/33234180/uitableview-example-for-swift
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController
 {
     //Game control class variable
     let gameControl = GameController()
+    var audioPlayer:AVAudioPlayer?
 
     override func viewDidLoad()
     {
@@ -34,10 +36,17 @@ class GameViewController: UIViewController
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
+        lblMonth.text = "Months Remaining: " + String(gameControl.level.timeAllowance)
         
         //turn the progress view vertical
         pvVote.transform = CGAffineTransform(rotationAngle: .pi / -2)
         pvVote.transform = pvVote.transform.scaledBy(x: 1, y: 30)
+        
+        //Round the corners
+        lblMoney.layer.masksToBounds = true
+        lblMonth.layer.masksToBounds = true
+        lblMoney.layer.cornerRadius = 6
+        lblMonth.layer.cornerRadius = 6
         
     }
     
@@ -82,6 +91,24 @@ class GameViewController: UIViewController
             lblNews.text = updatedNews
         }
         
+        self.playNewsThud()
+    }
+    
+    func playNewsThud()
+    {
+        let file = Bundle.main.path(forResource: "NewsThud", ofType: "m4a")!
+        let musicFile = URL(fileURLWithPath: file)
+        
+        do
+        {
+            //Play music
+            audioPlayer = try AVAudioPlayer(contentsOf: musicFile)
+            audioPlayer?.play()
+        }
+        catch
+        {
+            print("Could not play news thud")
+        }
     }
     
     @objc func updateLblMoney(notificationData: NSNotification)
@@ -111,6 +138,13 @@ class GameViewController: UIViewController
         self.present(alert, animated: true, completion: nil)
     }
     
+    func updateProgressBar(newPercentage: Float)
+    {
+        //Update the progress bar with new percentage (0.6, 0.43 etc)
+        print(newPercentage)
+        pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
+    }
+    
     @objc func assetTest(notificationData: NSNotification)
     {
         print("Asset clicked")
@@ -136,6 +170,9 @@ class GameViewController: UIViewController
                     
                     //Update the news bar
                     self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
+                    
+                    //Update the vote bar
+                    self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
                 }
             }
         }
@@ -150,6 +187,15 @@ class GameViewController: UIViewController
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
     @IBOutlet weak var pvVote: UIProgressView!
+    
+    @IBAction func btnMainMenu(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "showMenu", sender: self)
+        
+        //For stopping the timer
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
+    }
 }
 
 extension GameViewController: ModeleDelgate
@@ -162,6 +208,11 @@ extension GameViewController: ModeleDelgate
     func showMessage(_ title: String, _ message: String)
     {
         showMessageDismiss(title: title, message: message)
+    }
+    
+    func updateProgressBar(_ newPercentage: Float)
+    {
+        updateProgressBar(newPercentage: newPercentage)
     }
 }
 
@@ -248,5 +299,46 @@ class AssetTableCell: UITableViewCell
     @IBOutlet weak var assetCost: UILabel!
     @IBOutlet weak var assetImage: UIImageView!
     
+}
+
+class menuViewControlller: UIViewController
+{
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        btnResume.layer.cornerRadius = 6
+        btnExit.layer.cornerRadius = 6
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+    }
+    
+    @IBOutlet weak var btnResume: UIButton!
+    @IBOutlet weak var btnExit: UIButton!
+    
+    @IBAction func returnToGame(_ sender: Any)
+    {
+        self.dismiss(animated: true, completion: nil)
+        
+        //Restarting the timer
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+    }
+    
+    @IBAction func showMainMenu(_ sender: Any)
+    {
+        //TODO
+    }
+}
+
+class endGameViewController: UIViewController
+{
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
 }
 

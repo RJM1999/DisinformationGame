@@ -17,6 +17,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disinformation" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGE-w1-ept">
                                 <rect key="frame" x="97" y="84" width="220" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="20p-Gr-Eb4"/>
                                     <constraint firstAttribute="height" constant="100" id="Jzh-ip-L8k"/>
@@ -25,6 +26,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-vW-Xf2">
                                 <rect key="frame" x="157" y="404" width="100" height="70"/>
@@ -34,7 +36,7 @@
                                     <constraint firstAttribute="width" constant="100" id="zHM-lf-YPU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="Credits">
+                                <state key="normal" title="How To Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -90,6 +92,7 @@
                     <connections>
                         <outlet property="aboutButton" destination="7La-4n-gNL" id="JT3-Zf-DdT"/>
                         <outlet property="creditButton" destination="jQd-vW-Xf2" id="rob-Zz-6YL"/>
+                        <outlet property="lblTitle" destination="KGE-w1-ept" id="ktH-Ua-jtb"/>
                         <outlet property="playButton" destination="P3r-J2-SQq" id="c6h-Dk-b2O"/>
                     </connections>
                 </viewController>

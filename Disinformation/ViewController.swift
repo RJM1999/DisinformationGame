@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var creditButton: UIButton!
+    @IBOutlet weak var lblTitle: UILabel!
+    
+    var audioPlayer:AVAudioPlayer?
     
     override func viewDidLoad()
     {
@@ -21,9 +25,54 @@ class ViewController: UIViewController {
         playButton.layer.cornerRadius = 6
         aboutButton.layer.cornerRadius = 6
         creditButton.layer.cornerRadius = 6
+        lblTitle.layer.cornerRadius = 6
+        
+        let background = UIImage(named: "Background")
+        
+        //Play theme music
+        self.playThemeMusic()
+
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        //Stop playing the music
+        self.stopThemeMusic()
     }
     
     //Comment to make sure git is working and a slight change to this comment :).
+    
+    func playThemeMusic()
+    {
+        let file = Bundle.main.path(forResource: "MainMenuTheme", ofType: "m4a")!
+        let musicFile = URL(fileURLWithPath: file)
+        
+        do
+        {
+            //Play music forever
+            audioPlayer = try AVAudioPlayer(contentsOf: musicFile)
+            audioPlayer?.numberOfLoops = -1
+            audioPlayer?.play()
+        }
+        catch
+        {
+            print("Could not play theme music")
+        }
+    }
+    
+    func stopThemeMusic()
+    {
+        //StopPlaying the music
+        audioPlayer?.stop()
+    }
     
     //START Home page buttons
     @IBAction func PlayButtonClick(_ sender: UIButton)
@@ -62,10 +111,10 @@ class ViewController: UIViewController {
     @IBAction func CreditsButtonClick(_ sender: UIButton)
     {
         //string for the message box contents
-        let message = "All relevant credits to go here"
+        let message = "Your objective is to convince more than 50% of the public to vote for your side of the campaign. To achieve this goal you can buy campaign assets by using the asset menu. You are against the clock!"
         
         //string for title of pop up box
-        let title = "Credits"
+        let title = "How To Play"
         
         //Make alert pop up and add button
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
