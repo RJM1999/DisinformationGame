@@ -10,5 +10,21 @@ import Foundation
 
 class AIPlayer: Player
 {
+    var aiTimer = Timer()
     
+    override init()
+    {
+        super.init()
+        startTimer()
+    }
+    
+    func startTimer()
+    {
+       aiTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(AIPlayer.tic), userInfo: nil, repeats: true)
+    }
+    
+    @objc func tic()
+    {
+        
+    }
 }

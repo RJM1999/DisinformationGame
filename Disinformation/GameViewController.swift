@@ -191,7 +191,6 @@ class GameViewController: UIViewController
     func updateProgressBar(newPercentage: Float)
     {
         //Update the progress bar with new percentage (0.6, 0.43 etc)
-        print(newPercentage)
         pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
     }
     
