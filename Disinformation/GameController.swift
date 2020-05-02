@@ -25,6 +25,9 @@ class GameController
         //Get month allowance from the level class
         monthCounter = level.timeAllowance
         
+        //Set the available assets
+        self.setAvailableAssets()
+        
         //Start the timer
         startGameTimer()
         
@@ -34,10 +37,16 @@ class GameController
         nc.addObserver(self, selector: #selector(restartTimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
     }
     
+    func setAvailableAssets()
+    {
+        //Set the assets for the ai and real player
+        realPlayer.availableAssets = level.assetList
+        aiPlayer.availableAssets = level.assetList
+    }
+    
     func startGameTimer()
     {
         self.gameTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
-        
     }
     
     @objc func Tic()

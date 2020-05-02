@@ -204,9 +204,7 @@ class GameViewController: UIViewController
         print("Asset clicked")
         
         if let assetClicked = notificationData.userInfo?["Value"] as? Asset
-        {
-            print(assetClicked.assetName)
-            
+        {            
             //Copy over array
             let oldArray = self.gameControl.realPlayer.availableAssets
             
@@ -217,10 +215,12 @@ class GameViewController: UIViewController
                 {
                     //Remove asset from the array
                     self.gameControl.realPlayer.availableAssets.remove(at: index)
-                    print("Asset removed")
                     
                     //Debit amount from player
                     self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                    
+                    //Call for the balance update
+                    self.gameControl.realPlayer.realPlayerPurchase()
                     
                     //Update the news bar
                     self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)

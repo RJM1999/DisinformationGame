@@ -10,5 +10,10 @@ import Foundation
 
 class RealPlayer: Player
 {
-    
+    func realPlayerPurchase()
+    {
+        //Send out a notification so that the player balance is updated
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("BalanceUpdate"), object: nil, userInfo: ["Value": self.balance])
+    }
 }

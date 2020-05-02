@@ -14,7 +14,9 @@ class AIPlayer: Player
     
     override init()
     {
+        //Call the super class constructor
         super.init()
+        //Start the timer
         startTimer()
     }
     
