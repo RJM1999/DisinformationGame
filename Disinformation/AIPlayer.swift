@@ -29,6 +29,7 @@ class AIPlayer: Player
     
     func startTimer()
     {
+        //Start the timer with 
        aiTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(AIPlayer.tic), userInfo: nil, repeats: true)
     }
     
@@ -56,7 +57,31 @@ class AIPlayer: Player
     
     @objc func endAITimer()
     {
+        //Pause and kill the timer
         self.pauseAITimer()
         self.aiTimer.invalidate()
+    }
+    
+    func generateRandomNumber()
+    {
+        //Generate new random number
+    }
+    
+    func aiPurchase()
+    {
+        //Function for randomly choosing an asset
+        //Get an array of the all the available assets that the ai can afford
+        
+        var possibleAsset = [Asset]()
+        
+        for asset in self.availableAssets
+        {
+            if(asset.assetCost <= self.balance) //Can afford
+            {
+                //Add the new asset to the possible asset array
+                possibleAsset.append(asset)
+            }
+        }
+        
     }
 }

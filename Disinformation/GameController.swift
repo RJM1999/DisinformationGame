@@ -113,7 +113,6 @@ class GameController
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("Return"), object: nil, userInfo: nil)
         nc.post(name: Notification.Name("EndGame"), object: nil, userInfo: nil)
-        //delegate?.showMessage("End of game", "The game has finished init")
         print("End of game")
     }
     
