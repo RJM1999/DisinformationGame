@@ -24,6 +24,7 @@ class AIPlayer: Player
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(pauseAITimer), name: Notification.Name(rawValue: "PauseTimer"), object: nil)
         nc.addObserver(self, selector: #selector(restartAITimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
+        nc.addObserver(self, selector: #selector(endAITimer), name: Notification.Name(rawValue: "EndGame"), object: nil)
     }
     
     func startTimer()
@@ -51,5 +52,11 @@ class AIPlayer: Player
     @objc func restartAITimer()
     {
         self.isPaused = false
+    }
+    
+    @objc func endAITimer()
+    {
+        self.pauseAITimer()
+        self.aiTimer.invalidate()
     }
 }
