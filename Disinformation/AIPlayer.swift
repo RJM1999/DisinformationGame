@@ -83,5 +83,41 @@ class AIPlayer: Player
             }
         }
         
+        //Chose random asset from the list
+        if(possibleAsset.count <= 0)
+        {
+            //Check for empty array
+        }
+        else
+        {
+            let newAsset = possibleAsset.randomElement()
+            
+            if(newAsset != nil) //Safety check for nil
+            {
+                //Copy over array
+                let oldArray = self.availableAssets
+                
+                //Find the asset in the array of assets
+                for (index, currentAsset) in oldArray.enumerated()
+                {
+                    if(currentAsset.assetName == newAsset!.assetName)
+                    {
+                        //Remove asset from the array
+                        self.availableAssets.remove(at: index)
+                        
+                        debitPlayerAmount(amount: newAsset!.assetCost)
+                        
+                        //Post notification of ai purchase so game controller and news can process it
+                        let nc = NotificationCenter.default
+                        nc.post(name: Notification.Name("AIAssetPurchase"), object: nil, userInfo: ["Value":newAsset!])
+                    }
+                }
+            }
+            else
+            {
+                print("Problem with AI asset purchase seems to be nil")
+            }
+        }
+        
     }
 }

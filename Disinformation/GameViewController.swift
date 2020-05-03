@@ -34,6 +34,7 @@ class GameViewController: UIViewController
         nc.addObserver(self, selector: #selector(assetTest(notificationData:)), name: Notification.Name(rawValue: "AssetTest"), object: nil)
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
         nc.addObserver(self, selector: #selector(endGame), name: Notification.Name(rawValue: "EndGame"), object: nil)
+        nc.addObserver(self, selector: #selector(aiPurchaseUpdateNews(notificationData:)), name: Notification.Name(rawValue: "AIAssetPurchase"), object: nil)
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
@@ -176,6 +177,14 @@ class GameViewController: UIViewController
             
             //Update the text of the label
             lblMoney.text = lblMoneyMessage
+        }
+    }
+    
+    @objc func aiPurchaseUpdateNews(notificationData: NSNotification)
+    {
+        if let assetBought = notificationData.userInfo?["Value"] as? Asset
+        {
+            self.updateNews(newNewsItem: "AI bought " + assetBought.assetName)
         }
     }
     

@@ -35,6 +35,7 @@ class GameController
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(pauseTimer), name: Notification.Name(rawValue: "PauseTimer"), object: nil)
         nc.addObserver(self, selector: #selector(restartTimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
+        nc.addObserver(self, selector: #selector(aiAssetPurchase(notificationData:)), name: Notification.Name(rawValue: "AIAssetPurchase"), object: nil)
     }
     
     func setAvailableAssets()
@@ -104,6 +105,14 @@ class GameController
     {
         //Call view controller update
         delegate?.updateMonth(self.monthCounter)
+    }
+    
+    @objc func aiAssetPurchase(notificationData: NSNotification)
+    {
+        if let assetBought = notificationData.userInfo?["Value"] as? Asset
+        {
+            self.calculateVoteChange(isAI: true, assetBought: assetBought)
+        }
     }
     
     func endGame()
