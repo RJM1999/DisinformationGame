@@ -14,7 +14,7 @@ class GameController
     var gameTimer = Timer()
     var isPaused = false
     var monthCounter = 12
-    var monthTime = 3
+    var monthTime = 20
     weak var delegate: ModeleDelgate?
     var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 55)
     var realPlayer = RealPlayer()
@@ -47,7 +47,7 @@ class GameController
     
     func startGameTimer()
     {
-        self.gameTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
+        self.gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GameController.Tic), userInfo: nil, repeats: true)
     }
     
     @objc func Tic()

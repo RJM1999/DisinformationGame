@@ -213,29 +213,33 @@ class GameViewController: UIViewController
         print("Asset clicked")
         
         if let assetClicked = notificationData.userInfo?["Value"] as? Asset
-        {            
-            //Copy over array
-            let oldArray = self.gameControl.realPlayer.availableAssets
-            
-            //Find the asset in the array of assets
-            for (index, currentAsset) in oldArray.enumerated()
+        {
+            if(gameControl.realPlayer.balance >= assetClicked.assetCost) //Check for adequate funds
             {
-                if(currentAsset.assetName == assetClicked.assetName)
+                //Copy over array
+                let oldArray = self.gameControl.realPlayer.availableAssets
+                
+                //Find the asset in the array of assets
+                for (index, currentAsset) in oldArray.enumerated()
                 {
-                    //Remove asset from the array
-                    self.gameControl.realPlayer.availableAssets.remove(at: index)
-                    
-                    //Debit amount from player
-                    self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
-                    
-                    //Call for the balance update
-                    self.gameControl.realPlayer.realPlayerPurchase()
-                    
-                    //Update the news bar
-                    self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
-                    
-                    //Update the vote bar
-                    self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
+                    if(currentAsset.assetName == assetClicked.assetName)
+                    {
+                        //Remove asset from the array
+                        self.gameControl.realPlayer.availableAssets.remove(at: index)
+                        
+                        //Debit amount from player
+                        self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                        
+                        //Call for the balance update
+                        self.gameControl.realPlayer.realPlayerPurchase()
+                        
+                        //Update the news bar
+                        self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
+                        
+                        //Update the vote bar
+                        self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
+                    }
+                
                 }
             }
         }

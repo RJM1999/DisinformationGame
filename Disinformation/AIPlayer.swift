@@ -12,6 +12,7 @@ class AIPlayer: Player
 {
     var aiTimer = Timer()
     var isPaused = false
+    var aiTimerLimit = 20
     
     override init()
     {
@@ -30,14 +31,22 @@ class AIPlayer: Player
     func startTimer()
     {
         //Start the timer with 
-       aiTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(AIPlayer.tic), userInfo: nil, repeats: true)
+        aiTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AIPlayer.tic), userInfo: nil, repeats: true)
     }
     
     @objc func tic()
     {
         if(isPaused == false) //Game is not paused
         {
-            
+            if aiTimerLimit <= 0 //time to purchase
+            {
+                self.aiPurchase() //Make purchase
+                self.aiTimerLimit = 20 //reset timer
+            }
+            else //Otherwise decrmenent counter
+            {
+                aiTimerLimit = aiTimerLimit - 1
+            }
         }
         else //Game is paused
         {
