@@ -75,6 +75,8 @@ class GameController
                     updateTimerOnScreen()//Update the timer
                     
                     self.startGameTimer() //Restart the game timer
+                    
+                    self.monthlyBalanceUpdate() //Add 1000 to players account on rollover
                 }
             }
         }
@@ -83,6 +85,12 @@ class GameController
             //Do nothing as the game is paused
             print("Timer paused")
         }
+    }
+    
+    func monthlyBalanceUpdate()
+    {
+        self.realPlayer.addAmount(amount: 1000)
+        self.aiPlayer.addAmount(amount: 1000)
     }
     
     @objc func pauseTimer()

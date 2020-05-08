@@ -25,4 +25,9 @@ class Player
         self.balance = self.balance - amount
         
     }
+    
+    func addAmount(amount: Int)
+    {
+        self.balance = self.balance + amount
+    }
 }
