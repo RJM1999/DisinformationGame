@@ -24,11 +24,13 @@ class LevelClass
         self.timeAllowance = time
         self.population = population
         
+        //Set up assets
         makeAsset()
     }
     
     func makeAsset()
     {
+        //Images for the assets
         let twitbotsImg = UIImage(named: "twitterbots.jpeg")
         let tvCampImg = UIImage(named: "TVPPB.jpeg")
         let flyersImg = UIImage(named: "flyers.jpeg")
@@ -37,6 +39,7 @@ class LevelClass
         let questionPanelImg = UIImage(named: "questionpanel.jpeg")
         let rallyImg = UIImage(named: "rally.jpeg")
         
+        //Make assets variables
         let twitBot = Asset(name:"Twitter Bots", Desc: "An army of twitter bots that do your bidding",cost: 3750,bonus:  14, image: twitbotsImg!)
         let tvCamp = Asset(name:"TV Campaign", Desc: "Party political broadcasts enough to make you change the channel",cost: 1500,bonus:  7, image:  tvCampImg!)
         let flyers = Asset(name:"Flyer campaign", Desc: "Post flyers to voters, cheap but often thrown in the bin",cost: 500,bonus:  9, image: flyersImg!)
@@ -45,6 +48,7 @@ class LevelClass
         let questionPanel = Asset(name:"Question Panel", Desc: "A television show with fellow politicians to answer questions",cost: 4500,bonus:  27, image: questionPanelImg!)
         let rally = Asset(name:"Rally", Desc: "Gather fellow supporters and energize the campaign",cost: 2500,bonus:  20, image: rallyImg!)
         
+        //Add assets to the levels asset list
         assetList.append(twitBot)
         assetList.append(tvCamp)
         assetList.append(flyers)

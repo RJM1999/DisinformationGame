@@ -5,7 +5,7 @@
 //  Created by Ross Maider on 08/04/2020.
 //  Copyright © 2020 Ross Maider. All rights reserved.
 //
-// Notes Code Reuse:
+// References, See comment in code Start X:
 // Passing data between view controller GameViewController Class: 1
 // https://fluffy.es/3-ways-to-pass-data-between-view-controllers/#direct
 // Table Views AssetViewController class: 2
@@ -99,6 +99,7 @@ class GameViewController: UIViewController
     
     func setBackground()
     {
+        //Set the background image for the game
         let background = UIImage(named: "gamebackground")
         
         var imageView : UIImageView!
@@ -111,7 +112,8 @@ class GameViewController: UIViewController
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
-        
+   
+    //Updating the text on the month remaining label
     @objc func updateLblMonth(monthCounterInt: Int)
     {
         //Constant label layout
@@ -125,6 +127,7 @@ class GameViewController: UIViewController
         lblMonth.text = lblMonthMessage
     }
     
+    //Updating the news label
     func updateNews(newNewsItem: String)
     {
         //News prefix
@@ -142,11 +145,14 @@ class GameViewController: UIViewController
             lblNews.text = updatedNews
         }
         
+        //As news event has happened play thud
         self.playNewsThud()
     }
     
+    //Play music thud
     func playNewsThud()
     {
+        //Get music file
         let file = Bundle.main.path(forResource: "NewsThud", ofType: "m4a")!
         let musicFile = URL(fileURLWithPath: file)
         
@@ -162,6 +168,7 @@ class GameViewController: UIViewController
         }
     }
     
+    //Updating the money label
     @objc func updateLblMoney(notificationData: NSNotification)
     {
         //Constant label layout
@@ -180,6 +187,7 @@ class GameViewController: UIViewController
         }
     }
     
+    //Used by the observer for Ai purchasing an asset
     @objc func aiPurchaseUpdateNews(notificationData: NSNotification)
     {
         if let assetBought = notificationData.userInfo?["Value"] as? Asset
@@ -188,6 +196,7 @@ class GameViewController: UIViewController
         }
     }
     
+    //Pop up message NOT CURRENTLY USED
     func showMessageDismiss(title: String, message:String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -197,17 +206,20 @@ class GameViewController: UIViewController
         self.present(alert, animated: true, completion: nil)
     }
     
+    //Change vote bar percentage
     func updateProgressBar(newPercentage: Float)
     {
         //Update the progress bar with new percentage (0.6, 0.43 etc)
         pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
     }
     
+    //Transition to the results page
     @objc func endGame()
     {
         self.performSegue(withIdentifier: "endGameResult", sender: self)        
     }
     
+    //Player buys an asset
     @objc func assetTest(notificationData: NSNotification)
     {
         print("Asset clicked")
@@ -245,16 +257,18 @@ class GameViewController: UIViewController
         }
     }
     
+    //Open asset menu
     @IBAction func assetMenuTapped(_ sender: Any)
     {
         self.performSegue(withIdentifier: "showAssetMenu", sender: self)
     }
-    
+    //Outlets for UI elements
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
     @IBOutlet weak var pvVote: UIProgressView!
     
+    //Menu button pressed
     @IBAction func btnMainMenu(_ sender: Any)
     {
         self.performSegue(withIdentifier: "showMenu", sender: self)
@@ -264,7 +278,7 @@ class GameViewController: UIViewController
         nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
     }
 }
-
+//Delegate Design Pattern, view controller extends the model delegate class
 extension GameViewController: ModeleDelgate
 {
     func updateMonth(_ data: Int)

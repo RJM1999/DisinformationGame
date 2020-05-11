@@ -22,12 +22,14 @@ class Player
     
     func debitPlayerAmount(amount: Int)
     {
+        //Debit players balance an amount
         self.balance = self.balance - amount
         
     }
     
     func addAmount(amount: Int)
     {
+        //Increase balance by an amount
         self.balance = self.balance + amount
     }
 }

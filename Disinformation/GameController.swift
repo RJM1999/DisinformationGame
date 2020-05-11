@@ -15,7 +15,7 @@ class GameController
     var isPaused = false
     var monthCounter = 12
     var monthTime = 20
-    weak var delegate: ModeleDelgate?
+    weak var delegate: ModeleDelgate? //Delegate
     var level = LevelClass(title: "Brexit", desc: "Brexit campaign", time: 12, population: 55)
     var realPlayer = RealPlayer()
     var aiPlayer = AIPlayer()

@@ -12,7 +12,7 @@ class AIPlayer: Player
 {
     var aiTimer = Timer()
     var isPaused = false
-    var aiTimerLimit = 20
+    var aiTimerLimit = 30
     
     override init()
     {
