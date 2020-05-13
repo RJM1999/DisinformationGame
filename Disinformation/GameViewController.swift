@@ -5,7 +5,7 @@
 //  Created by Ross Maider on 08/04/2020.
 //  Copyright © 2020 Ross Maider. All rights reserved.
 //
-// Notes Code Reuse:
+// References, See comment in code Start X:
 // Passing data between view controller GameViewController Class: 1
 // https://fluffy.es/3-ways-to-pass-data-between-view-controllers/#direct
 // Table Views AssetViewController class: 2
@@ -33,6 +33,8 @@ class GameViewController: UIViewController
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(assetTest(notificationData:)), name: Notification.Name(rawValue: "AssetTest"), object: nil)
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
+        nc.addObserver(self, selector: #selector(endGame), name: Notification.Name(rawValue: "EndGame"), object: nil)
+        nc.addObserver(self, selector: #selector(aiPurchaseUpdateNews(notificationData:)), name: Notification.Name(rawValue: "AIAssetPurchase"), object: nil)
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
@@ -48,6 +50,8 @@ class GameViewController: UIViewController
         lblMoney.layer.cornerRadius = 6
         lblMonth.layer.cornerRadius = 6
         
+        //Set the background
+        self.setBackground()
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -59,8 +63,57 @@ class GameViewController: UIViewController
             let assetMenuVC = segue.destination as! AssetViewController
             assetMenuVC.tableAssetData = self.gameControl.realPlayer.availableAssets
         }
+        else if(segue.identifier == "endGameResult")
+        {
+            let endGameVC = segue.destination as! endGameViewController
+            endGameVC.didPlayerWin = calculateResults()
+        }
+        else
+        {
+            
+        }
     }
+    
+    func calculateResults() -> String
+    {
+        //Get value from the vote bar
+        let votePercentage = pvVote.progress
         
+        if(votePercentage > 0.5) //Player won
+        {
+            return "player"
+        }
+        else if(votePercentage == 0.5) //Draw
+        {
+            return "draw"
+        }
+        else if(votePercentage < 0.5) //Ai won
+        {
+            return "ai"
+        }
+        else //Just in case something went wrong
+        {
+            return ""
+        }
+    }
+    
+    func setBackground()
+    {
+        //Set the background image for the game
+        let background = UIImage(named: "gamebackground")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.2
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+   
+    //Updating the text on the month remaining label
     @objc func updateLblMonth(monthCounterInt: Int)
     {
         //Constant label layout
@@ -74,6 +127,7 @@ class GameViewController: UIViewController
         lblMonth.text = lblMonthMessage
     }
     
+    //Updating the news label
     func updateNews(newNewsItem: String)
     {
         //News prefix
@@ -91,11 +145,14 @@ class GameViewController: UIViewController
             lblNews.text = updatedNews
         }
         
+        //As news event has happened play thud
         self.playNewsThud()
     }
     
+    //Play music thud
     func playNewsThud()
     {
+        //Get music file
         let file = Bundle.main.path(forResource: "NewsThud", ofType: "m4a")!
         let musicFile = URL(fileURLWithPath: file)
         
@@ -111,6 +168,7 @@ class GameViewController: UIViewController
         }
     }
     
+    //Updating the money label
     @objc func updateLblMoney(notificationData: NSNotification)
     {
         //Constant label layout
@@ -129,6 +187,16 @@ class GameViewController: UIViewController
         }
     }
     
+    //Used by the observer for Ai purchasing an asset
+    @objc func aiPurchaseUpdateNews(notificationData: NSNotification)
+    {
+        if let assetBought = notificationData.userInfo?["Value"] as? Asset
+        {
+            self.updateNews(newNewsItem: "AI bought " + assetBought.assetName)
+        }
+    }
+    
+    //Pop up message NOT CURRENTLY USED
     func showMessageDismiss(title: String, message:String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -138,56 +206,69 @@ class GameViewController: UIViewController
         self.present(alert, animated: true, completion: nil)
     }
     
+    //Change vote bar percentage
     func updateProgressBar(newPercentage: Float)
     {
         //Update the progress bar with new percentage (0.6, 0.43 etc)
-        print(newPercentage)
         pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
     }
     
+    //Transition to the results page
+    @objc func endGame()
+    {
+        self.performSegue(withIdentifier: "endGameResult", sender: self)        
+    }
+    
+    //Player buys an asset
     @objc func assetTest(notificationData: NSNotification)
     {
         print("Asset clicked")
         
         if let assetClicked = notificationData.userInfo?["Value"] as? Asset
         {
-            print(assetClicked.assetName)
-            
-            //Copy over array
-            let oldArray = self.gameControl.realPlayer.availableAssets
-            
-            //Find the asset in the array of assets
-            for (index, currentAsset) in oldArray.enumerated()
+            if(gameControl.realPlayer.balance >= assetClicked.assetCost) //Check for adequate funds
             {
-                if(currentAsset.assetName == assetClicked.assetName)
+                //Copy over array
+                let oldArray = self.gameControl.realPlayer.availableAssets
+                
+                //Find the asset in the array of assets
+                for (index, currentAsset) in oldArray.enumerated()
                 {
-                    //Remove asset from the array
-                    self.gameControl.realPlayer.availableAssets.remove(at: index)
-                    print("Asset removed")
-                    
-                    //Debit amount from player
-                    self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
-                    
-                    //Update the news bar
-                    self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
-                    
-                    //Update the vote bar
-                    self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
+                    if(currentAsset.assetName == assetClicked.assetName)
+                    {
+                        //Remove asset from the array
+                        self.gameControl.realPlayer.availableAssets.remove(at: index)
+                        
+                        //Debit amount from player
+                        self.gameControl.realPlayer.debitPlayerAmount(amount: currentAsset.assetCost)
+                        
+                        //Call for the balance update
+                        self.gameControl.realPlayer.realPlayerPurchase()
+                        
+                        //Update the news bar
+                        self.updateNews(newNewsItem: "you bought " + currentAsset.assetName)
+                        
+                        //Update the vote bar
+                        self.gameControl.calculateVoteChange(isAI: false, assetBought: assetClicked)
+                    }
+                
                 }
             }
         }
     }
     
+    //Open asset menu
     @IBAction func assetMenuTapped(_ sender: Any)
     {
         self.performSegue(withIdentifier: "showAssetMenu", sender: self)
     }
-    
+    //Outlets for UI elements
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
     @IBOutlet weak var pvVote: UIProgressView!
     
+    //Menu button pressed
     @IBAction func btnMainMenu(_ sender: Any)
     {
         self.performSegue(withIdentifier: "showMenu", sender: self)
@@ -197,7 +278,7 @@ class GameViewController: UIViewController
         nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
     }
 }
-
+//Delegate Design Pattern, view controller extends the model delegate class
 extension GameViewController: ModeleDelgate
 {
     func updateMonth(_ data: Int)
@@ -336,9 +417,47 @@ class menuViewControlller: UIViewController
 
 class endGameViewController: UIViewController
 {
+    var didPlayerWin: String = ""
+    
+    @IBOutlet weak var lblHeading: UILabel!
+    @IBOutlet weak var lblResultsText: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        processResults()
+    }
+    
+    @IBAction func returnToMainMenuBtn(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "endGameReturn", sender: self)
+    }
+    
+    func processResults()
+    {
+        if(didPlayerWin.isEmpty)
+        {
+            print("There was a problem with displaying the results")
+        }
+        else //There is a result
+        {
+            if(didPlayerWin == "player") //Player won
+            {
+                lblResultsText.text = "Congratulations, you won the game! You managed to convince the general public to vote for you."
+            }
+            else if(didPlayerWin == "ai") //AI Won
+            {
+                lblResultsText.text = "Unfortunately, you lost the game. Your adversary managed to convince more of the public to vote for them"
+            }
+            else if(didPlayerWin == "draw") //Equal
+            {
+                lblResultsText.text = "It is too close to call this time! The electoral office has called for a recount of the votes!"
+            }
+            else
+            {
+                print("Error with the results")
+            }
+        }
     }
 }
 

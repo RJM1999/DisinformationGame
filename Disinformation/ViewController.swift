@@ -10,28 +10,32 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
+    //Outlets for the interface buttins
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var creditButton: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
     
+    //For the music plauer
     var audioPlayer:AVAudioPlayer?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        //Round the corners of the buttons and label
         playButton.layer.cornerRadius = 6
         aboutButton.layer.cornerRadius = 6
         creditButton.layer.cornerRadius = 6
         lblTitle.layer.cornerRadius = 6
         
+        //Set background
         let background = UIImage(named: "Background")
         
         //Play theme music
         self.playThemeMusic()
-
+        
+        //Set up background
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
@@ -42,6 +46,7 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(imageView)
     }
     
+    //When transitioning stop playing the music
     override func viewWillDisappear(_ animated: Bool)
     {
         //Stop playing the music
@@ -52,6 +57,7 @@ class ViewController: UIViewController {
     
     func playThemeMusic()
     {
+        //Get music files
         let file = Bundle.main.path(forResource: "MainMenuTheme", ofType: "m4a")!
         let musicFile = URL(fileURLWithPath: file)
         
@@ -62,7 +68,7 @@ class ViewController: UIViewController {
             audioPlayer?.numberOfLoops = -1
             audioPlayer?.play()
         }
-        catch
+        catch //Errors
         {
             print("Could not play theme music")
         }
@@ -88,6 +94,7 @@ class ViewController: UIViewController {
             return
         }
         
+        //Transition to new storyboard
         present(gameStoryboard, animated: true, completion: nil)
     
     }

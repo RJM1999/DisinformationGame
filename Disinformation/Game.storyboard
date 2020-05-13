@@ -68,9 +68,13 @@
                                 <color key="progressTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pys-yb-iIe">
-                                <rect key="frame" x="10" y="822" width="39" height="30"/>
-                                <state key="normal" title="Menu"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pys-yb-iIe">
+                                <rect key="frame" x="10" y="775" width="93" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="S15-cd-8IU"/>
+                                    <constraint firstAttribute="height" constant="77" id="t8Y-Tm-dLT"/>
+                                </constraints>
+                                <state key="normal" title="Menu" image="Menu"/>
                                 <connections>
                                     <action selector="btnMainMenu:" destination="fy1-zz-a8m" eventType="touchUpInside" id="gPH-PZ-YPY"/>
                                 </connections>
@@ -310,19 +314,63 @@
                     <view key="view" contentMode="scaleToFill" id="Yhf-rd-5gS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE8-2m-EfH">
+                                <rect key="frame" x="155" y="133" width="104.5" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3m-DZ-Lpk">
+                                <rect key="frame" x="30" y="219" width="354" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="QPh-qZ-gcy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZF-fc-9KY">
+                                <rect key="frame" x="157" y="377" width="100" height="70"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Hxb-9f-MgW"/>
+                                    <constraint firstAttribute="height" constant="70" id="sDE-Nd-63U"/>
+                                </constraints>
+                                <state key="normal" title="Main Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToMainMenuBtn:" destination="c5G-yt-hge" eventType="touchUpInside" id="cfn-sX-6Qt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="F3m-DZ-Lpk" firstAttribute="centerX" secondItem="Yhf-rd-5gS" secondAttribute="centerX" id="9hJ-eV-iil"/>
+                            <constraint firstItem="HE8-2m-EfH" firstAttribute="centerX" secondItem="Yhf-rd-5gS" secondAttribute="centerX" id="DB9-2i-2Bd"/>
+                            <constraint firstItem="gVM-W7-kWa" firstAttribute="trailing" secondItem="F3m-DZ-Lpk" secondAttribute="trailing" constant="30" id="DH5-vp-nX6"/>
+                            <constraint firstItem="HE8-2m-EfH" firstAttribute="top" secondItem="gVM-W7-kWa" secondAttribute="top" constant="89" id="PQl-Fp-cjW"/>
+                            <constraint firstItem="F3m-DZ-Lpk" firstAttribute="leading" secondItem="gVM-W7-kWa" secondAttribute="leading" constant="30" id="PnI-xV-2MQ"/>
+                            <constraint firstItem="iZF-fc-9KY" firstAttribute="centerX" secondItem="Yhf-rd-5gS" secondAttribute="centerX" id="SkW-K0-hE7"/>
+                            <constraint firstItem="iZF-fc-9KY" firstAttribute="top" secondItem="F3m-DZ-Lpk" secondAttribute="bottom" constant="78" id="avS-FD-LP5"/>
+                            <constraint firstItem="F3m-DZ-Lpk" firstAttribute="top" secondItem="HE8-2m-EfH" secondAttribute="bottom" constant="50" id="hZv-6F-1eC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gVM-W7-kWa"/>
                     </view>
                     <connections>
-                        <segue destination="B3S-tf-uEI" kind="presentation" modalPresentationStyle="fullScreen" id="mvj-5h-VjB"/>
+                        <outlet property="lblHeading" destination="HE8-2m-EfH" id="kM8-FK-rum"/>
+                        <outlet property="lblResultsText" destination="F3m-DZ-Lpk" id="p7P-ww-kmD"/>
+                        <segue destination="B3S-tf-uEI" kind="presentation" identifier="endGameReturn" modalPresentationStyle="fullScreen" id="mvj-5h-VjB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6q-hr-fiq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="828"/>
+            <point key="canvasLocation" x="-94.20289855072464" y="827.67857142857144"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Menu" width="521" height="526"/>
         <image name="assetmenu" width="246" height="248"/>
         <image name="newsbanner" width="1318" height="328"/>
     </resources>
