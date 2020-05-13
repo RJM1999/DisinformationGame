@@ -17,7 +17,7 @@ class Player
     init()
     {
         //Set the init balance
-        self.balance = 10000
+        self.balance = 8000
     }
     
     func debitPlayerAmount(amount: Int)

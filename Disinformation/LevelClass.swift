@@ -38,6 +38,10 @@ class LevelClass
         let radioImg = UIImage(named: "radio.jpeg")
         let questionPanelImg = UIImage(named: "questionpanel.jpeg")
         let rallyImg = UIImage(named: "rally.jpeg")
+        let doorstepsImg = UIImage(named: "Doorsteps.jpeg")
+        let partyBusImg = UIImage(named: "Party bus.jpeg")
+        let profileImg = UIImage(named: "Profiling.jpeg")
+
         
         //Make assets variables
         let twitBot = Asset(name:"Twitter Bots", Desc: "An army of twitter bots that do your bidding",cost: 3750,bonus:  14, image: twitbotsImg!)
@@ -47,6 +51,9 @@ class LevelClass
         let radio = Asset(name:"Radio Show", Desc: "Head on to the air waves for a radio show",cost: 1000,bonus:  5, image: radioImg!)
         let questionPanel = Asset(name:"Question Panel", Desc: "A television show with fellow politicians to answer questions",cost: 4500,bonus:  27, image: questionPanelImg!)
         let rally = Asset(name:"Rally", Desc: "Gather fellow supporters and energize the campaign",cost: 2500,bonus:  20, image: rallyImg!)
+        let doorstep = Asset(name:"Doorstep Campaign", Desc: "Go round the doors across the country",cost: 300,bonus:  5, image: doorstepsImg!)
+        let partybus = Asset(name:"Bus", Desc: "Drive up and down the country in a bus with interesting slogans",cost: 3000,bonus:  21, image: partyBusImg!)
+        let profiling = Asset(name:"Voter Profiling", Desc: "Employ a little know company to garner information on voters (With or without their consent)",cost: 2000,bonus:  20, image: profileImg!)
         
         //Add assets to the levels asset list
         assetList.append(twitBot)
@@ -56,6 +63,9 @@ class LevelClass
         assetList.append(radio)
         assetList.append(questionPanel)
         assetList.append(rally)
+        assetList.append(doorstep)
+        assetList.append(partybus)
+        assetList.append(profiling)
     }
     
 }
