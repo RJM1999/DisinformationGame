@@ -89,8 +89,12 @@ class GameController
     
     func monthlyBalanceUpdate()
     {
-        self.realPlayer.addAmount(amount: 1000)
-        self.aiPlayer.addAmount(amount: 1000)
+        self.realPlayer.addAmount(amount: 500)
+        self.aiPlayer.addAmount(amount: 500)
+        
+        //Post notification of balance change
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("BalanceUpdate"), object: nil, userInfo: ["Value":self.realPlayer.balance])
     }
     
     @objc func pauseTimer()

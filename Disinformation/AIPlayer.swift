@@ -28,12 +28,14 @@ class AIPlayer: Player
         nc.addObserver(self, selector: #selector(endAITimer), name: Notification.Name(rawValue: "EndGame"), object: nil)
     }
     
+    //Starting AI Timer
     func startTimer()
     {
         //Start the timer with 
         aiTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AIPlayer.tic), userInfo: nil, repeats: true)
     }
     
+    //Tic function on timer
     @objc func tic()
     {
         if(isPaused == false) //Game is not paused
@@ -54,16 +56,19 @@ class AIPlayer: Player
         }
     }
     
+    //Pause Ai timer
     @objc func pauseAITimer()
     {
         self.isPaused = true
     }
     
+    //Restart the timer
     @objc func restartAITimer()
     {
         self.isPaused = false
     }
     
+    //End the timer
     @objc func endAITimer()
     {
         //Pause and kill the timer
@@ -76,6 +81,7 @@ class AIPlayer: Player
         //Generate new random number
     }
     
+    //AI asset purchase
     func aiPurchase()
     {
         //Function for randomly choosing an asset
