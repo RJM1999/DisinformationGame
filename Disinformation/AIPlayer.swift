@@ -12,7 +12,7 @@ class AIPlayer: Player
 {
     var aiTimer = Timer()
     var isPaused = false
-    var aiTimerLimit = 30
+    var aiTimerLimit = 20
     
     override init()
     {
@@ -23,8 +23,9 @@ class AIPlayer: Player
         
         //Observer for the
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(pauseAITimer), name: Notification.Name(rawValue: "PauseTimer"), object: nil)
-        nc.addObserver(self, selector: #selector(restartAITimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
+        nc.addObserver(self, selector: #selector(pauseAITimer), name: Notification.Name(rawValue: "PauseTimerAI"), object: nil)
+        nc.addObserver(self, selector: #selector(restartAITimer), name: Notification.Name(rawValue: "RestartTimerAI"), object: nil)
+        nc.addObserver(self, selector: #selector(restartAITimer), name: Notification.Name(rawValue: "RestartTimerAIAsset"), object: nil)
         nc.addObserver(self, selector: #selector(endAITimer), name: Notification.Name(rawValue: "EndGame"), object: nil)
     }
     
@@ -52,7 +53,7 @@ class AIPlayer: Player
         }
         else //Game is paused
         {
-            
+            print("AI Timer Paused")
         }
     }
     

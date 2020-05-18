@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         //Play theme music
         self.playThemeMusic()
         
+        //Start 3
         //Set up background
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
+        //End 3
     }
     
     //When transitioning stop playing the music
