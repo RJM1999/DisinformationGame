@@ -34,7 +34,11 @@ class GameController
         //Observers for starting the timers
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(pauseTimer), name: Notification.Name(rawValue: "PauseTimer"), object: nil)
+
         nc.addObserver(self, selector: #selector(restartTimer), name: Notification.Name(rawValue: "RestartTimer"), object: nil)
+        
+        nc.addObserver(self, selector: #selector(pauseTimer), name: Notification.Name(rawValue: "PauseTimerAsset"), object: nil)
+
         nc.addObserver(self, selector: #selector(aiAssetPurchase(notificationData:)), name: Notification.Name(rawValue: "AIAssetPurchase"), object: nil)
     }
     
@@ -96,10 +100,12 @@ class GameController
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("BalanceUpdate"), object: nil, userInfo: ["Value":self.realPlayer.balance])
     }
+
     
     @objc func pauseTimer()
     {
         self.isPaused = true
+        print("The game is paused " + String(isPaused))
     }
     
     @objc func restartTimer()

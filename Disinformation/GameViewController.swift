@@ -10,6 +10,8 @@
 // https://fluffy.es/3-ways-to-pass-data-between-view-controllers/#direct
 // Table Views AssetViewController class: 2
 // https://stackoverflow.com/questions/33234180/uitableview-example-for-swift
+// Setting Background image: 3
+//https://stackoverflow.com/questions/38628803/how-to-set-background-image-in-swift/47175787
 
 import UIKit
 import AVFoundation
@@ -35,6 +37,7 @@ class GameViewController: UIViewController
         nc.addObserver(self, selector: #selector(updateLblMoney(notificationData:)), name: Notification.Name(rawValue: "BalanceUpdate"), object: nil)
         nc.addObserver(self, selector: #selector(endGame), name: Notification.Name(rawValue: "EndGame"), object: nil)
         nc.addObserver(self, selector: #selector(aiPurchaseUpdateNews(notificationData:)), name: Notification.Name(rawValue: "AIAssetPurchase"), object: nil)
+
         
         //End 1
         lblMoney.text = "Money: £" + String(gameControl.realPlayer.balance)
@@ -47,11 +50,16 @@ class GameViewController: UIViewController
         //Round the corners
         lblMoney.layer.masksToBounds = true
         lblMonth.layer.masksToBounds = true
+        lblApproval.layer.masksToBounds = true
         lblMoney.layer.cornerRadius = 6
         lblMonth.layer.cornerRadius = 6
+        lblApproval.layer.cornerRadius = 6
         
         //Set the background
         self.setBackground()
+        
+        //Set the approval label
+        self.setAppLabel()
     }
     
     //Screen transition for passing data to asset menu (Between view controllers)
@@ -65,6 +73,7 @@ class GameViewController: UIViewController
         }
         else if(segue.identifier == "endGameResult")
         {
+            
             let endGameVC = segue.destination as! endGameViewController
             endGameVC.didPlayerWin = calculateResults()
         }
@@ -99,6 +108,7 @@ class GameViewController: UIViewController
     
     func setBackground()
     {
+        //Start 3
         //Set the background image for the game
         let background = UIImage(named: "gamebackground")
         
@@ -111,6 +121,21 @@ class GameViewController: UIViewController
         imageView.alpha = 0.2
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
+        //End 3
+    }
+    
+    func setAppLabel()
+    {
+        //Label layout
+        let lblAppMessage = "Approval Level: "
+        //Get float percentage
+        let floatVote = pvVote.progress
+        //Convert float into %
+        let approvalLevel = floatVote * 100
+        
+        //Concat message and approval level
+        
+        lblApproval.text = lblAppMessage + String(format: "%.2f", approvalLevel) + "%"
     }
    
     //Updating the text on the month remaining label
@@ -211,12 +236,15 @@ class GameViewController: UIViewController
     {
         //Update the progress bar with new percentage (0.6, 0.43 etc)
         pvVote.setProgress((pvVote.progress + newPercentage), animated: true)
+        //Update the approval label
+        self.setAppLabel()
     }
     
     //Transition to the results page
     @objc func endGame()
     {
-        self.performSegue(withIdentifier: "endGameResult", sender: self)        
+        self.disableAllButtons()
+        performSegue(withIdentifier: "endGameResult", sender: self)
     }
     
     //Player buys an asset
@@ -257,16 +285,31 @@ class GameViewController: UIViewController
         }
     }
     
-    //Open asset menu
-    @IBAction func assetMenuTapped(_ sender: Any)
+    func disableAllButtons()
     {
-        self.performSegue(withIdentifier: "showAssetMenu", sender: self)
+        btnMenu.isEnabled = false
+        btnAssetMenu.isEnabled = false
     }
+    
+    //Open asset menu
+    @IBAction func btnAssetMenuTapped(_ sender: Any) {
+        //Stop the game
+        //For stopping the timer
+        print("Asset Menu tapped")
+            
+        self.performSegue(withIdentifier: "showAssetMenu", sender: self)
+
+    }
+    
+    
     //Outlets for UI elements
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
     @IBOutlet weak var lblNews: UILabel!
     @IBOutlet weak var pvVote: UIProgressView!
+    @IBOutlet weak var lblApproval: UILabel!
+    @IBOutlet weak var btnMenu: UIButton!
+    @IBOutlet weak var btnAssetMenu: UIButton!
     
     //Menu button pressed
     @IBAction func btnMainMenu(_ sender: Any)
@@ -276,6 +319,7 @@ class GameViewController: UIViewController
         //For stopping the timer
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
+        nc.post(name: Notification.Name("PauseTimerAI"), object: nil, userInfo: nil)
     }
 }
 //Delegate Design Pattern, view controller extends the model delegate class
@@ -308,7 +352,11 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //For the table view
     @IBOutlet weak var tableView: UITableView!
-
+    @IBAction func dismissTapped(_ sender: Any)
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -322,9 +370,19 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        //Observer for end of game
+        //Observer for pausing timers
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(returnToGame), name: Notification.Name(rawValue: "Return"), object: nil)
+        nc.post(name: Notification.Name("PauseTimer"), object: nil, userInfo: nil)
+        nc.post(name: Notification.Name("PauseTimerAI"), object: nil, userInfo: nil)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        //Restart the timers
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+        nc.post(name: Notification.Name("RestartTimerAI"), object: nil, userInfo: nil)
     }
     
     // number of rows in table view
@@ -361,6 +419,9 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //Send notification
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("AssetTest"), object: nil, userInfo: ["Value": tableAssetData[index]])
+        
+        //Close asset table list when the player has bought an item
+        self.dismiss(animated: true, completion: nil)
     }
     
     //End 2
@@ -369,6 +430,7 @@ class AssetViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         //Closes the popover so the game can end
         self.dismiss(animated: true, completion: nil)
+
     }
         
 }
@@ -395,6 +457,7 @@ class menuViewControlller: UIViewController
     {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+        nc.post(name: Notification.Name("RestartTimerAI"), object: nil, userInfo: nil)
     }
     
     @IBOutlet weak var btnResume: UIButton!
@@ -407,6 +470,7 @@ class menuViewControlller: UIViewController
         //Restarting the timer
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("RestartTimer"), object: nil, userInfo: nil)
+        nc.post(name: Notification.Name("RestartTimerAI"), object: nil, userInfo: nil)
     }
     
     @IBAction func showMainMenu(_ sender: Any)
@@ -421,6 +485,7 @@ class endGameViewController: UIViewController
     
     @IBOutlet weak var lblHeading: UILabel!
     @IBOutlet weak var lblResultsText: UILabel!
+    
     
     override func viewDidLoad()
     {
