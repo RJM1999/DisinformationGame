@@ -5,6 +5,9 @@
 //  Created by Ross Maider on 09/03/2020.
 //  Copyright © 2020 Ross Maider. All rights reserved.
 //
+// References
+//  Playing Audio in Swift: 4
+//  https://www.hackingwithswift.com/example-code/media/how-to-play-sounds-using-avaudioplayer
 
 import UIKit
 import AVFoundation
@@ -16,7 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var creditButton: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
     
-    //For the music plauer
+    //For the music player
+    // Start 4
     var audioPlayer:AVAudioPlayer?
     
     override func viewDidLoad()
@@ -81,7 +85,7 @@ class ViewController: UIViewController {
         //StopPlaying the music
         audioPlayer?.stop()
     }
-    
+    //End 4
     //START Home page buttons
     @IBAction func PlayButtonClick(_ sender: UIButton)
     {
