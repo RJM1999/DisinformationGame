@@ -1,2 +1,2 @@
 # DisinformationGame
-A repo for my game that I am developing for Games Programming Module. It is a strategy game based on modern political campaigns. 
+My first attempt at app development using Swift for an iOS game. It is a strategy game based on political campaigns and tactics they use to persuede the public to vote. 
